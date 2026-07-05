@@ -4,3 +4,7 @@ dist/
 .DS_Store
 .yarn/cache/
 .yarn/install-state.gz
+
+# Package output
+pkg/
+*.tgz
