@@ -16,20 +16,81 @@ This module lets Bitfocus Companion control Adobe Lightroom Classic through LRBr
 
 Typical setup:
 
-- Adobe Lightroom Classic runs on a Windows computer
-- LRBridge runs on the same Windows computer as Lightroom
-- Bitfocus Companion can run on the same computer or on another machine
-- Companion connects to the LRBridge API host and port
+- Adobe Lightroom Classic runs on a Windows computer.
+- LRBridge runs on the same Windows computer as Lightroom.
+- Bitfocus Companion can run on the same computer or on another machine.
+- Companion connects to the LRBridge API host and port.
 
 Default LRBridge API port: 17891
 
-Example Companion connection:
+## Installation
+
+### Normal user installation
+
+For normal Companion users, download the .tgz package from the GitHub release page.
+
+Use this file:
+
+ninoleto-lrbridge-0.1.0.tgz
+
+Do not use Source code zip or Source code tar.gz unless you are a developer.
+
+In Bitfocus Companion:
+
+1. Open the Modules page.
+2. Click Import module package.
+3. Select ninoleto-lrbridge-0.1.0.tgz.
+4. Add a new connection named LRBridge.
+5. Set the LRBridge host and port.
+
+### Developer installation
+
+Developers can clone this repository and build manually:
+
+corepack enable
+corepack prepare yarn@4.17.0 --activate
+yarn install
+yarn build
+
+For Companion developer-module testing, place this module folder inside Companion's developer modules folder and set Companion's developer module path to the parent folder.
+
+Example module folder:
+
+/home/nino/companion-module-dev/companion-module-ninoleto-lrbridge
+
+Example developer module path:
+
+/home/nino/companion-module-dev
+
+## Connection host guide
+
+LRBridge must run on the same computer as Adobe Lightroom Classic.
+
+If Bitfocus Companion and LRBridge are running on the same computer, use localhost:
+
+Host: 127.0.0.1
+Port: 17891
+
+If Bitfocus Companion is running on another computer, use the LAN IP address of the computer running LRBridge:
 
 Host: 192.168.1.x
 Port: 17891
+
+Example:
+
+- Companion runs on Linux/Zorin.
+- LRBridge and Lightroom run on a Windows PC.
+- Windows PC LAN IP is 192.168.1.11.
+
+Companion connection:
+
+Host: 192.168.1.11
+Port: 17891
 Poll interval: 1000 ms
 
-Use the IP address of the computer running LRBridge.
+Do not use 0.0.0.0 as the Companion connection host.
+
+0.0.0.0 is used by servers to listen on all network interfaces. Clients should connect to 127.0.0.1 or to the real LAN IP address.
 
 ## Status
 
@@ -103,10 +164,10 @@ Keyboard shortcuts should be handled separately, for example with Vicreo Hotkey,
 ## Architecture
 
 Companion button press
-→ Companion LRBridge module
-→ HTTP request to LRBridge
-→ LRBridge talks to Lightroom Classic
-→ Lightroom changes the selected photo
+-> Companion LRBridge module
+-> HTTP request to LRBridge
+-> LRBridge talks to Lightroom Classic
+-> Lightroom changes the selected photo
 
 The module should stay focused on LRBridge API control.
 
@@ -129,17 +190,7 @@ The module expects LRBridge to provide these API routes:
 
 /action is used for LRBridge actions such as Auto Tone or Auto White Balance.
 
-## Development
-
-Install dependencies:
-
-corepack enable
-corepack prepare yarn@4.17.0 --activate
-yarn install
-
-Build:
-
-yarn build
+## Development notes
 
 The build output is generated into:
 
@@ -147,21 +198,17 @@ dist/
 
 The dist folder is ignored by Git and should be generated locally.
 
-## Local Companion development
+The packaged Companion module is generated as a .tgz file.
 
-Place this module folder inside Companion's developer module folder.
+Package build command:
 
-Example:
+yarn package
 
-/home/nino/companion-module-dev/companion-module-ninoleto-lrbridge
+Package output example:
 
-Set Companion's developer module path to the parent folder:
+ninoleto-lrbridge-0.1.0.tgz
 
-/home/nino/companion-module-dev
-
-Companion should then show the module as:
-
-LRBridge
+Do not commit package output files. Upload the .tgz file to the GitHub release assets.
 
 ## Repository notes for future maintainers and AI assistants
 
