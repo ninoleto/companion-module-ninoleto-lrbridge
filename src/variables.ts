@@ -1,12 +1,7 @@
+import { FEEDBACK_SUPPORTED_SLIDERS, sliderLabel, sliderVariableId } from './choices.js'
 import type ModuleInstance from './main.js'
 
-export type VariablesSchema = {
-	connected: string
-	last_status: string
-	last_error: string
-	queue_length: string
-	supported_slider_count: string
-}
+export type VariablesSchema = Record<string, string>
 
 export function UpdateVariableDefinitions(self: ModuleInstance): void {
 	self.setVariableDefinitions({
@@ -15,5 +10,18 @@ export function UpdateVariableDefinitions(self: ModuleInstance): void {
 		last_error: { name: 'Last LRBridge error' },
 		queue_length: { name: 'LRBridge queue length' },
 		supported_slider_count: { name: 'Number of supported sliders loaded' },
+		feedback_enabled: { name: 'Slider feedback enabled yes/no' },
+		feedback_slider_count: { name: 'Number of feedback sliders' },
+		feedback_last_update: { name: 'Last slider feedback update timestamp' },
+		feedback_last_error: { name: 'Last slider feedback error' },
+		auto_action_cooldown_active: { name: 'Auto Tone / Auto White Balance cooldown active yes/no' },
+		auto_action_cooldown_remaining_ms: { name: 'Auto Tone / Auto White Balance cooldown remaining milliseconds' },
+		auto_action_cooldown_remaining_s: { name: 'Auto Tone / Auto White Balance cooldown remaining seconds' },
+		...Object.fromEntries(
+			FEEDBACK_SUPPORTED_SLIDERS.map((slider) => [
+				sliderVariableId(slider),
+				{ name: `Lightroom slider value: ${sliderLabel(slider)}` },
+			])
+		),
 	})
 }

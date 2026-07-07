@@ -1,31 +1,34 @@
-# LRBridge Companion Module
+# LRBridge
 
-This module controls Adobe Lightroom Classic through the local LRBridge HTTP API.
+This module controls Adobe Lightroom Classic through LRBridge.
 
-## Requirements
+## Ports
 
-- LRBridge running on the Lightroom PC
-- Lightroom Classic with the LRBridge Lightroom plugin loaded and polling
-- Companion on the same PC or another LAN machine
+Commands use the LRBridge command API port, normally `17891`.
 
-## Default LRBridge API
+Feedback uses the LRBridge Web Controller / feedback API port, normally `17892`.
 
-- Host: `127.0.0.1`
-- Port: `17891`
+## Recommended settings
 
-Use the LAN IP of the Lightroom PC if Companion runs on another computer.
+```text
+LRBridge Host / IP: 127.0.0.1, or the LAN IP of the Lightroom PC
+Command API Port: 17891
+Feedback / Web Controller Port: 17892
+Background All Slider Feedback Poll Interval: 0
+Action Feedback Debounce After Slider Move: 500
+```
 
-## Notes
+## Important
 
-This module intentionally uses LRBridge's stable one-way endpoints only:
+Use the native LRBridge actions if you want automatic slider feedback.
 
-- `/adjust`
-- `/reset`
-- `/reset-group`
-- `/reset-all`
-- `/action`
-- `/status`
-- `/sliders`
-- `/groups`
+Generic HTTP actions can move sliders, but they bypass this module. If a button uses generic HTTP, the LRBridge module cannot know which slider moved and cannot update only that slider.
 
-Do not use LRBridge `/get`, `/last-result`, or `/set` for normal Companion feedback yet.
+## Button text example
+
+```text
+EXP
+$(LRBridge:slider_exposure)
+```
+
+Use Companion's variable picker to insert the correct connection prefix.

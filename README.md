@@ -1,234 +1,226 @@
-# companion-module-ninoleto-lrbridge
+# LRBridge Companion Module
 
-Bitfocus Companion module for LRBridge.
+Native Bitfocus Companion module for controlling Adobe Lightroom Classic through LRBridge.
 
-This repository is not LRBridge itself. It is a Companion module that talks to LRBridge over HTTP.
+This repository is for the Companion module only. LRBridge itself is the local Windows bridge app that talks to Lightroom Classic.
 
-LRBridge is a separate application for controlling Adobe Lightroom Classic through a local HTTP API.
+- LRBridge app: https://github.com/ninoleto/LRBridge
+- Companion module: https://github.com/ninoleto/companion-module-ninoleto-lrbridge
 
-LRBridge repository:
+## What it does
 
-https://github.com/ninoleto/LRBridge
+The module gives Companion native Lightroom actions without using the generic HTTP module.
 
-## Purpose
-
-This module lets Bitfocus Companion control Adobe Lightroom Classic through LRBridge, without creating every command manually as a generic HTTP action.
-
-Typical setup:
-
-- Adobe Lightroom Classic runs on a Windows computer.
-- LRBridge runs on the same Windows computer as Lightroom.
-- Bitfocus Companion can run on the same computer or on another machine.
-- Companion connects to the LRBridge API host and port.
-
-Default LRBridge API port: 17891
-
-## Installation
-
-### Normal user installation
-
-For normal Companion users, download the .tgz package from the GitHub release page.
-
-Use this file:
-
-ninoleto-lrbridge-0.1.0.tgz
-
-Do not use Source code zip or Source code tar.gz unless you are a developer.
-
-In Bitfocus Companion:
-
-1. Open the Modules page.
-2. Click Import module package.
-3. Select ninoleto-lrbridge-0.1.0.tgz.
-4. Add a new connection named LRBridge.
-5. Set the LRBridge host and port.
-
-### Developer installation
-
-Developers can clone this repository and build manually:
-
-corepack enable
-corepack prepare yarn@4.17.0 --activate
-yarn install
-yarn build
-
-For Companion developer-module testing, place this module folder inside Companion's developer modules folder and set Companion's developer module path to the parent folder.
-
-Example module folder:
-
-/home/nino/companion-module-dev/companion-module-ninoleto-lrbridge
-
-Example developer module path:
-
-/home/nino/companion-module-dev
-
-## Connection host guide
-
-LRBridge must run on the same computer as Adobe Lightroom Classic.
-
-If Bitfocus Companion and LRBridge are running on the same computer, use localhost:
-
-Host: 127.0.0.1
-Port: 17891
-
-If Bitfocus Companion is running on another computer, use the LAN IP address of the computer running LRBridge:
-
-Host: 192.168.1.x
-Port: 17891
-
-Example:
-
-- Companion runs on Linux/Zorin.
-- LRBridge and Lightroom run on a Windows PC.
-- Windows PC LAN IP is 192.168.1.11.
-
-Companion connection:
-
-Host: 192.168.1.11
-Port: 17891
-Poll interval: 1000 ms
-
-Do not use 0.0.0.0 as the Companion connection host.
-
-0.0.0.0 is used by servers to listen on all network interfaces. Clients should connect to 127.0.0.1 or to the real LAN IP address.
-
-## Status
-
-Experimental v0.1.0 module.
-
-Confirmed working:
-
-- Adjust Lightroom slider
-- Reset individual Lightroom slider
-- Run LRBridge action
-
-## Companion Actions
-
-This module intentionally exposes only three action types.
-
-### Adjust Lightroom slider
-
-Sends a relative slider adjustment to LRBridge.
-
-Expected LRBridge endpoint pattern:
-
-/adjust?slider=Exposure&amount=1
-
-Example Companion settings:
-
-Slider: Exposure
-Amount: 1
-
-### Reset Lightroom slider
-
-Resets one selected Lightroom slider.
-
-Expected LRBridge endpoint pattern:
-
-/reset?slider=Exposure
-
-Example Companion settings:
-
-Slider: Exposure
-
-### Run LRBridge action
-
-Runs a named LRBridge action.
-
-Expected LRBridge endpoint pattern:
-
-/action?action=setAutoTone
-
-Example actions may include:
-
-setAutoTone
-setAutoWhiteBalance
-cropTool
-
-Available actions depend on the installed LRBridge version.
-
-## What this module intentionally does not include
-
-This module does not include:
-
-- Reset all sliders
-- Reset slider group
-- Keyboard shortcut sending
-- Direct Lightroom keyboard emulation
-- Live slider value feedback
-
-Global reset and group reset actions are intentionally excluded because they can be dangerous in real Lightroom workflows.
-
-Keyboard shortcuts should be handled separately, for example with Vicreo Hotkey, unless LRBridge later adds a safe Lightroom-focused shortcut system.
-
-## Architecture
-
-Companion button press
--> Companion LRBridge module
--> HTTP request to LRBridge
--> LRBridge talks to Lightroom Classic
--> Lightroom changes the selected photo
-
-The module should stay focused on LRBridge API control.
-
-Do not add Windows keyboard injection directly inside this Companion module. Companion may run on Linux, macOS, or another machine, while Lightroom usually runs on Windows.
-
-## LRBridge API expectations
-
-The module expects LRBridge to provide these API routes:
-
-/status
-/adjust
-/reset
-/action
-
-/status is used for connection status.
-
-/adjust is used for relative slider changes.
-
-/reset is used for individual slider reset.
-
-/action is used for LRBridge actions such as Auto Tone or Auto White Balance.
-
-## Development notes
-
-The build output is generated into:
-
-dist/
-
-The dist folder is ignored by Git and should be generated locally.
-
-The packaged Companion module is generated as a .tgz file.
-
-Package build command:
-
-yarn package
-
-Package output example:
-
-ninoleto-lrbridge-0.1.0.tgz
-
-Do not commit package output files. Upload the .tgz file to the GitHub release assets.
-
-## Repository notes for future maintainers and AI assistants
-
-This is a small and intentionally focused Companion module.
-
-Before changing the module, preserve these rules:
-
-1. Keep the public action list simple.
-2. Do not re-add reset all or reset group actions without a clear safety reason.
-3. Do not mix generic keyboard shortcuts into this module.
-4. Prefer LRBridge API actions over OS-level automation.
-5. Keep LRBridge itself as the source of truth for Lightroom behavior.
-6. If new sliders or actions are added, update choices and README together.
-7. Test changes in Companion with a real LRBridge connection before release.
-
-Current intended public action list:
+Available actions:
 
 - Adjust Lightroom slider
 - Reset Lightroom slider
 - Run LRBridge action
+
+Supported workflows:
+
+- Loupedeck / Razer Stream Controller through Companion
+- Stream Deck through Companion
+- Encoder/button workflows for Lightroom Classic
+- Numeric slider feedback on Companion buttons
+- Conditional feedback colors based on slider values
+
+## Important architecture
+
+LRBridge uses two HTTP interfaces:
+
+| Purpose | Default port | Path style |
+| --- | ---: | --- |
+| Commands | `17891` | `/adjust`, `/reset`, `/action`, `/status` |
+| Feedback / Web Controller API | `17892` | `/api/feedback/request`, `/api/feedback/value` |
+
+The Companion module sends commands to the command port and reads Lightroom feedback from the feedback/web-controller port.
+
+## Why native module actions are required
+
+Do not use Companion's generic HTTP module if you want automatic slider feedback.
+
+Generic HTTP can move Lightroom sliders, but it bypasses this module. That means the module cannot know which slider moved and cannot trigger action-based feedback.
+
+Use this instead:
+
+```text
+LRBridge -> Adjust Lightroom slider
+```
+
+Then use a variable in the button text:
+
+```text
+EXP
+$(LRBridge:slider_exposure)
+```
+
+The exact variable prefix depends on the Companion connection name. Use the Companion variable picker to insert it.
+
+## Recommended connection settings
+
+For Companion running on the same Windows PC as LRBridge:
+
+```text
+LRBridge Host / IP: 127.0.0.1
+LRBridge Command API Port: 17891
+LRBridge Feedback / Web Controller Port: 17892
+Status Poll Interval: 1000
+Background All Slider Feedback Poll Interval: 0
+Action Feedback Debounce After Slider Move: 500
+Feedback Read Delay After Request: 80
+Auto Tone / Auto WB Cooldown: 2200
+```
+
+For Companion running on another machine, use the LAN IP of the Lightroom/LRBridge PC:
+
+```text
+LRBridge Host / IP: 192.168.1.11
+LRBridge Command API Port: 17891
+LRBridge Feedback / Web Controller Port: 17892
+```
+
+Do not use `0.0.0.0` as the host in Companion. That is only for servers listening on all interfaces.
+
+## Feedback behavior
+
+Default feedback mode is action-triggered:
+
+```text
+Move Exposure from Companion
+wait 500 ms after the last movement
+request feedback only for Exposure
+update only slider_exposure
+```
+
+This is much faster than polling every Lightroom slider.
+
+Background all-slider feedback is optional and disabled by default. Keep it at `0` unless you need Companion to notice changes made directly inside Lightroom with the mouse.
+
+## Variables
+
+The module creates variables for feedback-supported Lightroom sliders.
+
+Examples:
+
+```text
+$(LRBridge:slider_exposure)
+$(LRBridge:slider_contrast)
+$(LRBridge:slider_temperature)
+$(LRBridge:slider_clarity)
+```
+
+Use Companion's variable picker because the connection prefix may not be exactly `LRBridge`.
+
+Useful status variables:
+
+```text
+$(LRBridge:connected)
+$(LRBridge:feedback_last_update)
+$(LRBridge:feedback_last_error)
+$(LRBridge:auto_action_cooldown_active)
+```
+
+## Feedback styles
+
+Companion feedbacks included:
+
+- LRBridge server is online
+- Lightroom slider value is not zero
+- Lightroom slider value equals zero
+- Lightroom slider value comparison
+- Auto Tone / Auto White Balance cooldown is active
+
+Example use:
+
+- Button text shows `$(LRBridge:slider_exposure)`
+- Feedback changes button color when Exposure is not zero
+
+## Auto Tone and Auto White Balance cooldown
+
+Auto Tone and Auto White Balance are blocked briefly after slider commands.
+
+Reason: Lightroom can still be applying slider changes. Running Auto Tone or Auto WB immediately after slider movement can produce wrong results.
+
+Default cooldown:
+
+```text
+2200 ms
+```
+
+## Installation for normal users
+
+Download the `.tgz` package from GitHub Releases and install it through Companion's module installation interface.
+
+The source archives generated by GitHub are for developers. Normal Companion users should use the `.tgz` module package.
+
+## Developer install
+
+Clone into the Companion dev modules folder:
+
+```bash
+cd /home/nino/companion-module-dev
+git clone https://github.com/ninoleto/companion-module-ninoleto-lrbridge.git
+cd companion-module-ninoleto-lrbridge
+yarn install
+yarn build
+```
+
+Start Companion with the extra module path:
+
+```bash
+/home/nino/companion/resources/node-runtimes/node22/bin/node --use-system-ca /home/nino/companion/resources/main.js --config-dir=/home/nino/.config/companion/ --admin-port=8001 --admin-address=0.0.0.0 --log-level=info --extra-module-path=/home/nino/companion-module-dev
+```
+
+## API endpoints used by this module
+
+Command API, normally port `17891`:
+
+```text
+/status
+/sliders
+/groups
+/adjust?slider=Exposure&amount=1
+/reset?slider=Exposure
+/action?action=setAutoTone
+```
+
+Feedback API, normally port `17892` with `/api` prefix:
+
+```text
+/api/feedback/request?slider=Exposure
+/api/feedback/value?slider=Exposure
+/api/feedback/request-many?sliders=Exposure,Contrast
+/api/feedback/all
+```
+
+## Design rules for future AI agents and maintainers
+
+Keep the module simple.
+
+Do not add these actions unless Nino explicitly asks:
+
+- Reset all sliders
+- Reset slider group
+- Keyboard shortcut sender
+- Generic HTTP action wrapper
+- Direct keyboard emulation
+
+Keep the public action list focused:
+
+```text
+Adjust Lightroom slider
+Reset Lightroom slider
+Run LRBridge action
+```
+
+For slider feedback, prefer action-triggered feedback over background polling.
+
+Do not make action feedback depend on background all-slider polling.
+
+Do not read all sliders after every slider move. Request only the slider that moved.
+
+Do not use the generic HTTP module for button examples when explaining automatic feedback. Use this module's native actions.
 
 ## License
 

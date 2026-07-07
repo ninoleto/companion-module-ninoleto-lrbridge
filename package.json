@@ -1,6 +1,6 @@
 {
   "name": "ninoleto-lrbridge",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "main": "dist/main.js",
   "type": "module",
   "scripts": {

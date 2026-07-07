@@ -28,9 +28,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
-				await self.callLRBridge(
-					`/adjust?slider=${encodeURIComponent(String(event.options.slider))}&amount=${encodeURIComponent(String(event.options.amount))}`
-				)
+				await self.runAdjustSlider(String(event.options.slider), Number(event.options.amount || 0))
 			},
 		},
 		reset_slider: {
@@ -45,7 +43,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
-				await self.callLRBridge(`/reset?slider=${encodeURIComponent(String(event.options.slider))}`)
+				await self.runResetSlider(String(event.options.slider))
 			},
 		},
 		lightroom_action: {
@@ -60,7 +58,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (event) => {
-				await self.callLRBridge(`/action?action=${encodeURIComponent(String(event.options.action))}`)
+				await self.runLightroomAction(String(event.options.action))
 			},
 		},
 	})

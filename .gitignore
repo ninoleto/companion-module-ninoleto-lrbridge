@@ -1,10 +1,8 @@
 node_modules/
 dist/
-*.tsbuildinfo
-.DS_Store
-.yarn/cache/
-.yarn/install-state.gz
-
-# Package output
 pkg/
 *.tgz
+.yarn/
+.pnp.*
+*.log
+.DS_Store
