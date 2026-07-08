@@ -34,12 +34,18 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	bridgeOnline = false
 
 	private pollTimer: NodeJS.Timeout | undefined
+	private contextTimer: NodeJS.Timeout | undefined
+	private contextRefreshTimer: NodeJS.Timeout | undefined
+	private feedbackRefreshInFlight = false
 	private backgroundFeedbackTimer: NodeJS.Timeout | undefined
 	private cooldownTimer: NodeJS.Timeout | undefined
 	private backgroundFeedbackSnapshotInFlight = false
 	private actionFeedbackTimers = new Map<string, NodeJS.Timeout>()
 	private actionFeedbackSerials = new Map<string, number>()
 	private autoActionCooldownUntil = 0
+	private lastLocalSliderCommandAt = 0
+	private lastContextSignature = ''
+	private lastDevelopCounter = ''
 	private sliderChoices: Choice[] = FALLBACK_SLIDERS
 	private groupChoices: Choice[] = FALLBACK_GROUPS
 	private sliderValues: Record<string, unknown> = {}
@@ -62,11 +68,13 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		await this.refreshMetadata(false)
 		await this.checkStatus(false)
 		this.startPolling()
+		this.startContextPolling()
 		this.startBackgroundFeedbackPolling()
 	}
 
 	async destroy(): Promise<void> {
 		this.stopPolling()
+		this.stopContextPolling()
 		this.stopBackgroundFeedbackPolling()
 		this.stopActionFeedbackTimers()
 		this.stopCooldownTimer()
@@ -76,11 +84,13 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	async configUpdated(config: ModuleConfig): Promise<void> {
 		this.config = normalizeConfig(config)
 		this.stopPolling()
+		this.stopContextPolling()
 		this.stopBackgroundFeedbackPolling()
 		this.stopActionFeedbackTimers()
 		await this.refreshMetadata(false)
 		await this.checkStatus(false)
 		this.startPolling()
+		this.startContextPolling()
 		this.startBackgroundFeedbackPolling()
 		this.updateCooldownVariables()
 	}
@@ -135,12 +145,14 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 
 	async runAdjustSlider(slider: string, amount: number): Promise<void> {
 		this.noteSliderCommandSent()
+		this.lastLocalSliderCommandAt = Date.now()
 		await this.callLRBridge(`/adjust?slider=${encodeURIComponent(slider)}&amount=${encodeURIComponent(String(amount))}`)
 		this.queueActionFeedbackForSliders([slider])
 	}
 
 	async runResetSlider(slider: string): Promise<void> {
 		this.noteSliderCommandSent()
+		this.lastLocalSliderCommandAt = Date.now()
 		await this.callLRBridge(`/reset?slider=${encodeURIComponent(slider)}`)
 		this.queueActionFeedbackForSliders([slider])
 	}
@@ -252,6 +264,14 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 			feedback_slider_count: String(FEEDBACK_SUPPORTED_SLIDERS.length),
 			feedback_last_update: '',
 			feedback_last_error: '',
+			context_active_module: '',
+			context_selected_photo_key: '',
+			context_counter: '',
+			context_changed_at: '',
+			context_last_reason: '',
+			develop_counter: '',
+			context_last_update: '',
+			context_last_error: '',
 			auto_action_cooldown_active: 'no',
 			auto_action_cooldown_remaining_ms: '0',
 			auto_action_cooldown_remaining_s: '0',
@@ -292,6 +312,88 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 			clearInterval(this.pollTimer)
 			this.pollTimer = undefined
 		}
+	}
+
+	private startContextPolling(): void {
+		const intervalMs = Number(this.config.contextPollIntervalMs || 0)
+		if (intervalMs <= 0) return
+
+		void this.checkContext(false)
+		this.contextTimer = setInterval(() => {
+			void this.checkContext(false)
+		}, intervalMs)
+	}
+
+	private stopContextPolling(): void {
+		if (this.contextTimer) {
+			clearInterval(this.contextTimer)
+			this.contextTimer = undefined
+		}
+		if (this.contextRefreshTimer) {
+			clearTimeout(this.contextRefreshTimer)
+			this.contextRefreshTimer = undefined
+		}
+	}
+
+	private async checkContext(logErrors = true): Promise<void> {
+		try {
+			const data = await this.callLRBridge('/context')
+			const context = extractContextState(data)
+
+			this.setVariableValues({
+				context_active_module: context.activeModule || '',
+				context_selected_photo_key: context.selectedPhotoKey || '',
+				context_counter: context.contextCounter || '',
+				context_changed_at: context.contextChangedAt || '',
+				context_last_reason: context.lastContextReason || '',
+				develop_counter: context.developCounter || '',
+				context_last_update: new Date().toISOString(),
+				context_last_error: '',
+			})
+
+			this.maybeRefreshAllFeedbackForContext(context)
+		} catch (error) {
+			const message = errorToMessage(error)
+			this.setVariableValues({ context_last_error: message })
+			if (logErrors) this.log('warn', `LRBridge context check failed: ${message}`)
+		}
+	}
+
+	private maybeRefreshAllFeedbackForContext(context: ContextState): void {
+		const activeModule = context.activeModule.toLowerCase()
+		const contextSignature = [context.activeModule, context.selectedPhotoKey, context.contextCounter].join('|')
+		const developCounter = context.developCounter
+
+		if (this.lastContextSignature === '') {
+			this.lastContextSignature = contextSignature
+			this.lastDevelopCounter = developCounter
+			return
+		}
+
+		let shouldRefresh = false
+
+		if (contextSignature !== this.lastContextSignature) {
+			this.lastContextSignature = contextSignature
+			this.lastDevelopCounter = developCounter
+			shouldRefresh = activeModule === 'develop'
+		} else if (developCounter && developCounter !== this.lastDevelopCounter) {
+			this.lastDevelopCounter = developCounter
+			const quietMs = Number(this.config.developChangeQuietMs || 0)
+			const isOwnRecentSliderCommand = quietMs > 0 && Date.now() - this.lastLocalSliderCommandAt < quietMs
+			shouldRefresh = !isOwnRecentSliderCommand && activeModule === 'develop'
+		}
+
+		if (shouldRefresh) this.queueFullFeedbackRefresh('context')
+	}
+
+	private queueFullFeedbackRefresh(reason: string): void {
+		if (this.contextRefreshTimer) clearTimeout(this.contextRefreshTimer)
+
+		this.contextRefreshTimer = setTimeout(() => {
+			this.contextRefreshTimer = undefined
+			this.setVariableValues({ last_status: `Refreshing all Lightroom slider values: ${reason}` })
+			void this.requestFeedbackForSliders(FEEDBACK_SUPPORTED_SLIDERS)
+		}, Number(this.config.contextRefreshDelayMs || 0))
 	}
 
 	private startBackgroundFeedbackPolling(): void {
@@ -410,25 +512,32 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		)
 
 		if (requestedSliders.length === 0) return
+		if (this.feedbackRefreshInFlight) return
 
+		this.feedbackRefreshInFlight = true
 		try {
-			for (const chunk of chunkArray(requestedSliders, 35)) {
-				await this.callLRBridgeFeedback(`/feedback/request-many?sliders=${encodeURIComponent(chunk.join(','))}`)
-			}
+			// One request-many call is important. Chunking caused early sliders such as Exposure/Contrast
+			// to stay stale when later chunks replaced the active LRBridge feedback request.
+			await this.callLRBridgeFeedback(`/feedback/request-many?sliders=${encodeURIComponent(requestedSliders.join(','))}`)
 
 			await sleep(Number(this.config.feedbackReadDelayMs || 0))
 			await this.updateFeedbackValuesFromCache(requestedSliders)
 		} catch (error) {
 			const message = errorToMessage(error)
 			this.setVariableValues({ feedback_last_error: message })
-			this.log('debug', `LRBridge background feedback request failed: ${message}`)
+			this.log('warn', `LRBridge feedback refresh failed: ${message}`)
+		} finally {
+			this.feedbackRefreshInFlight = false
 		}
 	}
 
 	private async updateFeedbackValuesFromCache(requestedSliders: string[]): Promise<void> {
 		const data = await this.callLRBridgeFeedback('/feedback/all')
 		const values = extractFeedbackValues(data)
-		if (!values) return
+		if (!values) {
+			this.setVariableValues({ feedback_last_error: 'No feedback values returned', last_status: 'No Lightroom slider values returned' })
+			return
+		}
 
 		const variableUpdates: Record<string, string> = {}
 		let updatedCount = 0
@@ -443,9 +552,15 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 			updatedCount++
 		}
 
+		if (updatedCount === 0) {
+			this.setVariableValues({ feedback_last_error: 'No slider values updated', last_status: 'No Lightroom slider values updated' })
+			return
+		}
+
 		if (updatedCount > 0) {
 			variableUpdates.feedback_last_update = new Date().toISOString()
 			variableUpdates.feedback_last_error = ''
+			variableUpdates.last_status = `Updated ${updatedCount} Lightroom slider values`
 			this.setVariableValues(variableUpdates)
 			this.checkFeedbacks('slider_value_not_zero', 'slider_value_equals_zero', 'slider_value_compare')
 		}
@@ -513,16 +628,44 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 }
 
 function normalizeConfig(config: ModuleConfig): ModuleConfig {
+	const preset = String(config.feedbackTimingPreset || 'normal')
+	const timing = getFeedbackTiming(preset)
+
 	return {
 		host: config.host || '127.0.0.1',
 		port: Number(config.port || 17891),
 		feedbackPort: Number(config.feedbackPort || 17892),
-		pollIntervalMs: Number(config.pollIntervalMs ?? 1000),
-		requestTimeoutMs: Number(config.requestTimeoutMs ?? 3000),
-		backgroundFeedbackPollIntervalMs: Number(config.backgroundFeedbackPollIntervalMs ?? 0),
-		actionFeedbackDebounceMs: Number(config.actionFeedbackDebounceMs ?? 500),
-		feedbackReadDelayMs: Number(config.feedbackReadDelayMs ?? 80),
-		autoActionCooldownMs: Number(config.autoActionCooldownMs ?? AUTO_ACTION_COOLDOWN_MS),
+		feedbackTimingPreset: timing.preset,
+
+		// Hidden/internal defaults.
+		pollIntervalMs: 1000,
+		requestTimeoutMs: 2000,
+		backgroundFeedbackPollIntervalMs: 0,
+		actionFeedbackDebounceMs: timing.actionFeedbackDebounceMs,
+		feedbackReadDelayMs: timing.feedbackReadDelayMs,
+		autoActionCooldownMs: 3000,
+		contextPollIntervalMs: 500,
+		contextRefreshDelayMs: timing.contextRefreshDelayMs,
+		developChangeQuietMs: 1500,
+	}
+}
+
+type FeedbackTiming = {
+	preset: string
+	actionFeedbackDebounceMs: number
+	feedbackReadDelayMs: number
+	contextRefreshDelayMs: number
+}
+
+function getFeedbackTiming(preset: string): FeedbackTiming {
+	switch (preset) {
+		case 'fast':
+			return { preset, actionFeedbackDebounceMs: 500, feedbackReadDelayMs: 500, contextRefreshDelayMs: 250 }
+		case 'safe':
+			return { preset, actionFeedbackDebounceMs: 1000, feedbackReadDelayMs: 1000, contextRefreshDelayMs: 1000 }
+		case 'normal':
+		default:
+			return { preset: 'normal', actionFeedbackDebounceMs: 700, feedbackReadDelayMs: 700, contextRefreshDelayMs: 500 }
 	}
 }
 
@@ -535,6 +678,48 @@ function resolveFeedbackSliderName(slider: string): string | undefined {
 
 	const lower = cleaned.toLowerCase()
 	return FEEDBACK_SUPPORTED_SLIDERS.find((item) => item.toLowerCase() === lower)
+}
+
+
+type ContextState = {
+	activeModule: string
+	selectedPhotoKey: string
+	contextCounter: string
+	contextChangedAt: string
+	lastContextReason: string
+	developCounter: string
+}
+
+function extractContextState(data: unknown): ContextState {
+	if (!data || typeof data !== 'object') {
+		return emptyContextState()
+	}
+
+	const record = data as Record<string, unknown>
+	return {
+		activeModule: stringifyContextValue(record.activeModule),
+		selectedPhotoKey: stringifyContextValue(record.selectedPhotoKey || record.photoKey),
+		contextCounter: stringifyContextValue(record.contextCounter),
+		contextChangedAt: stringifyContextValue(record.contextChangedAt),
+		lastContextReason: stringifyContextValue(record.lastContextReason || record.contextReason),
+		developCounter: stringifyContextValue(record.developCounter || record.developFingerprint || record.developSignature),
+	}
+}
+
+function emptyContextState(): ContextState {
+	return {
+		activeModule: '',
+		selectedPhotoKey: '',
+		contextCounter: '',
+		contextChangedAt: '',
+		lastContextReason: '',
+		developCounter: '',
+	}
+}
+
+function stringifyContextValue(value: unknown): string {
+	if (value === undefined || value === null) return ''
+	return String(value)
 }
 
 function errorToMessage(error: unknown): string {

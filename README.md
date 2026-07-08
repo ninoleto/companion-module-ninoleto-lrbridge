@@ -1,227 +1,205 @@
-# LRBridge Companion Module
+# companion-module-ninoleto-lrbridge
 
-Native Bitfocus Companion module for controlling Adobe Lightroom Classic through LRBridge.
+Native Bitfocus Companion connection module for **LRBridge**, a small bridge for controlling Adobe Lightroom Classic through HTTP.
 
-This repository is for the Companion module only. LRBridge itself is the local Windows bridge app that talks to Lightroom Classic.
+This module is intended for Loupedeck / Razer Stream Controller / Stream Deck style workflows in Companion.
 
-- LRBridge app: https://github.com/ninoleto/LRBridge
-- Companion module: https://github.com/ninoleto/companion-module-ninoleto-lrbridge
+## Version
 
-## What it does
+`0.4.1` - context-aware feedback build for **LRBridge v0.5.1 or newer**.
 
-The module gives Companion native Lightroom actions without using the generic HTTP module.
+## What this module does
 
-Available actions:
+- Sends native LRBridge slider commands from Companion.
+- Sends native LRBridge Lightroom actions from Companion.
+- Provides Companion variables for Lightroom slider feedback values.
+- Updates the touched slider after native slider actions.
+- Polls the new LRBridge `/context` endpoint to detect selected-photo/module/develop-state changes.
+- Refreshes all feedback-supported slider values once when LRBridge context changes.
+- Keeps constant all-slider polling disabled by default.
 
-- Adjust Lightroom slider
-- Reset Lightroom slider
-- Run LRBridge action
+## Required LRBridge version
 
-Supported workflows:
+This module requires **LRBridge v0.5.1 or newer** with the context API:
 
-- Loupedeck / Razer Stream Controller through Companion
-- Stream Deck through Companion
-- Encoder/button workflows for Lightroom Classic
-- Numeric slider feedback on Companion buttons
-- Conditional feedback colors based on slider values
+```json
+{
+  "ok": true,
+  "queueLength": 0,
+  "activeModule": "develop",
+  "selectedPhotoKey": "unique-photo-id-or-path",
+  "contextCounter": 123,
+  "contextChangedAt": 1783387000000,
+  "lastContextReason": "photo",
+  "developCounter": 456
+}
+```
 
-## Important architecture
-
-LRBridge uses two HTTP interfaces:
-
-| Purpose | Default port | Path style |
-| --- | ---: | --- |
-| Commands | `17891` | `/adjust`, `/reset`, `/action`, `/status` |
-| Feedback / Web Controller API | `17892` | `/api/feedback/request`, `/api/feedback/value` |
-
-The Companion module sends commands to the command port and reads Lightroom feedback from the feedback/web-controller port.
-
-## Why native module actions are required
-
-Do not use Companion's generic HTTP module if you want automatic slider feedback.
-
-Generic HTTP can move Lightroom sliders, but it bypasses this module. That means the module cannot know which slider moved and cannot trigger action-based feedback.
-
-Use this instead:
+Expected endpoints:
 
 ```text
-LRBridge -> Adjust Lightroom slider
-```
-
-Then use a variable in the button text:
-
-```text
-EXP
-$(LRBridge:slider_exposure)
-```
-
-The exact variable prefix depends on the Companion connection name. Use the Companion variable picker to insert it.
-
-## Recommended connection settings
-
-For Companion running on the same Windows PC as LRBridge:
-
-```text
-LRBridge Host / IP: 127.0.0.1
-LRBridge Command API Port: 17891
-LRBridge Feedback / Web Controller Port: 17892
-Status Poll Interval: 1000
-Background All Slider Feedback Poll Interval: 0
-Action Feedback Debounce After Slider Move: 500
-Feedback Read Delay After Request: 80
-Auto Tone / Auto WB Cooldown: 2200
-```
-
-For Companion running on another machine, use the LAN IP of the Lightroom/LRBridge PC:
-
-```text
-LRBridge Host / IP: 192.168.1.11
-LRBridge Command API Port: 17891
-LRBridge Feedback / Web Controller Port: 17892
-```
-
-Do not use `0.0.0.0` as the host in Companion. That is only for servers listening on all interfaces.
-
-## Feedback behavior
-
-Default feedback mode is action-triggered:
-
-```text
-Move Exposure from Companion
-wait 500 ms after the last movement
-request feedback only for Exposure
-update only slider_exposure
-```
-
-This is much faster than polling every Lightroom slider.
-
-Background all-slider feedback is optional and disabled by default. Keep it at `0` unless you need Companion to notice changes made directly inside Lightroom with the mouse.
-
-## Variables
-
-The module creates variables for feedback-supported Lightroom sliders.
-
-Examples:
-
-```text
-$(LRBridge:slider_exposure)
-$(LRBridge:slider_contrast)
-$(LRBridge:slider_temperature)
-$(LRBridge:slider_clarity)
-```
-
-Use Companion's variable picker because the connection prefix may not be exactly `LRBridge`.
-
-Useful status variables:
-
-```text
-$(LRBridge:connected)
-$(LRBridge:feedback_last_update)
-$(LRBridge:feedback_last_error)
-$(LRBridge:auto_action_cooldown_active)
-```
-
-## Feedback styles
-
-Companion feedbacks included:
-
-- LRBridge server is online
-- Lightroom slider value is not zero
-- Lightroom slider value equals zero
-- Lightroom slider value comparison
-- Auto Tone / Auto White Balance cooldown is active
-
-Example use:
-
-- Button text shows `$(LRBridge:slider_exposure)`
-- Feedback changes button color when Exposure is not zero
-
-## Auto Tone and Auto White Balance cooldown
-
-Auto Tone and Auto White Balance are blocked briefly after slider commands.
-
-Reason: Lightroom can still be applying slider changes. Running Auto Tone or Auto WB immediately after slider movement can produce wrong results.
-
-Default cooldown:
-
-```text
-2200 ms
-```
-
-## Installation for normal users
-
-Download the `.tgz` package from GitHub Releases and install it through Companion's module installation interface.
-
-The source archives generated by GitHub are for developers. Normal Companion users should use the `.tgz` module package.
-
-## Developer install
-
-Clone into the Companion dev modules folder:
-
-```bash
-cd /home/nino/companion-module-dev
-git clone https://github.com/ninoleto/companion-module-ninoleto-lrbridge.git
-cd companion-module-ninoleto-lrbridge
-yarn install
-yarn build
-```
-
-Start Companion with the extra module path:
-
-```bash
-/home/nino/companion/resources/node-runtimes/node22/bin/node --use-system-ca /home/nino/companion/resources/main.js --config-dir=/home/nino/.config/companion/ --admin-port=8001 --admin-address=0.0.0.0 --log-level=info --extra-module-path=/home/nino/companion-module-dev
-```
-
-## API endpoints used by this module
-
-Command API, normally port `17891`:
-
-```text
+Command API, usually port 17891:
 /status
+/context
 /sliders
 /groups
 /adjust?slider=Exposure&amount=1
 /reset?slider=Exposure
 /action?action=setAutoTone
-```
 
-Feedback API, normally port `17892` with `/api` prefix:
-
-```text
+Feedback / Web Controller API, usually port 17892:
 /api/feedback/request?slider=Exposure
 /api/feedback/value?slider=Exposure
 /api/feedback/request-many?sliders=Exposure,Contrast
 /api/feedback/all
 ```
 
-## Design rules for future AI agents and maintainers
+## Companion connection settings
 
-Keep the module simple.
-
-Do not add these actions unless Nino explicitly asks:
-
-- Reset all sliders
-- Reset slider group
-- Keyboard shortcut sender
-- Generic HTTP action wrapper
-- Direct keyboard emulation
-
-Keep the public action list focused:
+Typical setup when Companion runs on another machine, such as Zorin, and Lightroom/LRBridge runs on the Windows PC:
 
 ```text
-Adjust Lightroom slider
-Reset Lightroom slider
-Run LRBridge action
+LRBridge Host / IP: 192.168.1.11
+LRBridge Command API Port: 17891
+LRBridge Feedback / Web Controller Port: 17892
+Feedback Timing: Normal, recommended
 ```
 
-For slider feedback, prefer action-triggered feedback over background polling.
+Use `127.0.0.1` only when Companion runs on the same Windows PC as LRBridge.
 
-Do not make action feedback depend on background all-slider polling.
+Do not use `0.0.0.0` as the host in Companion. `0.0.0.0` is for servers listening on all interfaces, not for clients connecting to LRBridge.
 
-Do not read all sliders after every slider move. Request only the slider that moved.
+## Actions
 
-Do not use the generic HTTP module for button examples when explaining automatic feedback. Use this module's native actions.
+The module intentionally keeps the public action list small:
 
-## License
+- **Adjust Lightroom slider**
+- **Reset Lightroom slider**
+- **Run LRBridge action**
 
-MIT
+Do not use generic HTTP actions if you want action-triggered feedback. Generic HTTP buttons can move Lightroom, but this module cannot know they were pressed, so it cannot update the touched slider immediately.
+
+## Feedback behavior
+
+### Native slider action feedback
+
+When a Companion button uses **LRBridge -> Adjust Lightroom slider** or **LRBridge -> Reset Lightroom slider**, the module waits briefly, requests feedback only for that touched slider, then updates the matching Companion variable.
+
+Example button text:
+
+```text
+EXP
+$(LRBridge:slider_exposure)
+```
+
+The exact prefix depends on the Companion connection name. Use Companion's variable picker.
+
+### Context-aware full refresh
+
+The module polls LRBridge `/context` by default every 500 ms.
+
+When LRBridge reports a changed selected photo, Lightroom module, or develop state, the module waits briefly and then refreshes all feedback-supported slider variables once.
+
+This is meant to solve:
+
+- changing photo in Lightroom
+- switching Library / Develop
+- manual Lightroom reset or develop-state change, when LRBridge reports `developCounter`
+
+### Background all-slider polling
+
+Background all-slider polling remains available as an emergency/fallback setting, but it is disabled by default.
+
+Keep this at `0` unless you explicitly want constant all-slider polling.
+
+## Variables
+
+Global variables include:
+
+```text
+connected
+last_status
+last_error
+queue_length
+feedback_last_update
+feedback_last_error
+context_active_module
+context_selected_photo_key
+context_counter
+context_changed_at
+context_last_reason
+develop_counter
+context_last_update
+context_last_error
+auto_action_cooldown_active
+auto_action_cooldown_remaining_ms
+auto_action_cooldown_remaining_s
+```
+
+Slider variables are generated for all Web Controller feedback-supported sliders, for example:
+
+```text
+slider_exposure
+slider_contrast
+slider_temperature
+slider_tint
+slider_clarity
+slider_dehaze
+```
+
+Use the Companion variable picker to insert the exact variable name with the correct connection prefix.
+
+## Developer notes for humans and AI agents
+
+This repository is the Companion module only. LRBridge itself is a separate app/plugin project.
+
+Important design rules:
+
+- Keep commands on the command API port, normally `17891`.
+- Keep feedback on the Web Controller API port, normally `17892`, under `/api/feedback/...`.
+- Keep generic HTTP actions out of the feedback design. Native LRBridge module actions are required for action feedback.
+- Do not add keyboard shortcut sending to this module.
+- Do not add destructive reset-all or reset-group actions unless explicitly requested.
+- Keep background all-slider polling disabled by default.
+- Prefer context-triggered one-shot full refreshes over constant all-slider polling.
+- Preserve the small public action surface.
+
+## Packaging
+
+Developer build:
+
+```bash
+yarn install
+yarn build
+yarn package
+```
+
+The Companion installable package is the generated `.tgz` file.
+
+
+## Feedback timing defaults
+
+The normal Companion connection UI intentionally exposes only the important settings:
+
+- LRBridge Host / IP
+- LRBridge Command API Port
+- LRBridge Feedback / Web Controller Port
+- Feedback Timing
+
+Internal timing values are hidden so normal users do not need to tune them.
+
+| Setting | Fast | Normal | Safe |
+| --- | ---: | ---: | ---: |
+| Action feedback debounce | 500 ms | 700 ms | 1000 ms |
+| Feedback read delay | 500 ms | 700 ms | 1000 ms |
+| Context poll interval | 500 ms | 500 ms | 500 ms |
+| Context full refresh delay | 250 ms | 500 ms | 1000 ms |
+| Background all-slider polling | disabled | disabled | disabled |
+| Status poll interval | 1000 ms | 1000 ms | 1000 ms |
+| HTTP timeout | 2000 ms | 2000 ms | 2000 ms |
+| Auto Tone / Auto WB cooldown | 3000 ms | 3000 ms | 3000 ms |
+| Ignore develop counter after own slider command | 1500 ms | 1500 ms | 1500 ms |
+
+Normal is recommended. Fast can read old Lightroom values on slower machines or heavy catalogs. Safe is slower but more reliable.
+
+Context/photo-change refresh uses LRBridge `/context`, then refreshes all feedback-supported sliders with one `/feedback/request-many` call. The previous chunked request-many implementation was removed because it could leave early sliders stale.

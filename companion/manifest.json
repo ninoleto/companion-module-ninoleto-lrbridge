@@ -3,7 +3,7 @@
   "id": "ninoleto-lrbridge",
   "name": "LRBridge",
   "shortname": "LRBridge",
-  "description": "Control Adobe Lightroom Classic through LRBridge HTTP API",
+  "description": "Control Adobe Lightroom Classic through LRBridge, with context-aware slider feedback",
   "manufacturer": "ninoleto",
   "products": [
     "LRBridge"
@@ -16,7 +16,7 @@
     "Loupedeck",
     "Stream Deck"
   ],
-  "version": "0.3.0",
+  "version": "0.4.1",
   "license": "MIT",
   "repository": "git+https://github.com/ninoleto/companion-module-ninoleto-lrbridge.git",
   "bugs": "https://github.com/ninoleto/companion-module-ninoleto-lrbridge/issues",
