@@ -24,8 +24,7 @@ const SWITCH_TEXT_SIZE = 13
 const MINUS_BACKGROUND = 0x202428
 const RESET_BACKGROUND = 0x59410f
 const PLUS_BACKGROUND = 0x202428
-
-const ROTARY_BACKGROUND = 0x202428
+const ROTARY_BASE_BACKGROUND = 0x24364a
 const NEGATIVE_BACKGROUND = 0x7a2025
 const POSITIVE_BACKGROUND = 0x174f7a
 
@@ -33,7 +32,8 @@ const AUTO_ACTION_BACKGROUND = 0x075985
 const TOOL_ACTION_BACKGROUND = 0x273c75
 const RESET_ACTION_BACKGROUND = 0x7a3700
 const COOLDOWN_BACKGROUND = 0x9a5a00
-const SWITCH_INACTIVE_BACKGROUND = 0x202428
+const SWITCH_ON_BACKGROUND = 0x2a9d8f
+const SWITCH_OFF_BACKGROUND = 0x174a4d
 
 
 const SWITCH_CONTROLS = new Set<string>([
@@ -170,21 +170,18 @@ export function UpdatePresets(self: ModuleInstance): void {
 		if (numericSliders.length === 0) continue
 
 		const groupId = safeId(group.name)
-		const rotaryIds: string[] = []
-		const buttonIds: string[] = []
-
-		const controlLegend = numericSliders
-			.map(
-				(slider) =>
-					`${shortLabel(slider)} = ${sliderLabel(slider)}`
-			)
-			.join(', ')
+		const controlDefinitions: Array<{
+			id: string
+			name: string
+			description: string
+			type: 'simple'
+			presets: string[]
+		}> = []
 
 		for (const slider of numericSliders) {
 			const sliderId = safeId(slider)
 			const short = shortLabel(slider)
 			const full = sliderLabel(slider)
-			const groupColor = ROTARY_BACKGROUND
 
 			const rotaryId = `${sliderId}_rotary`
 			const minusId = `${sliderId}_minus`
@@ -193,9 +190,9 @@ export function UpdatePresets(self: ModuleInstance): void {
 
 			presets[rotaryId] = rotaryPreset(
 				`${full} rotary control`,
-				`${short}\n$(this:${sliderVariableId(slider)})`,
+				`⟳\n${short}\n$(this:${sliderVariableId(slider)})`,
 				slider,
-				groupColor
+				ROTARY_BASE_BACKGROUND
 			)
 
 			presets[minusId] = pressPreset(
@@ -239,31 +236,25 @@ export function UpdatePresets(self: ModuleInstance): void {
 				}
 			)
 
-			rotaryIds.push(rotaryId)
-			buttonIds.push(minusId, resetId, plusId)
+			controlDefinitions.push({
+				id: `${groupId}_${sliderId}`,
+				name: `${full} (${short})`,
+				description:
+					`Rotary: turn left (-), turn right (+), press to reset. || Buttons: (-) decreases, RST resets, (+) increases. || Live value code: $(this:${sliderVariableId(slider)})`,
+				type: 'simple',
+				presets: [
+					rotaryId,
+					minusId,
+					resetId,
+					plusId,
+				],
+			})
 		}
 
 		structure.push({
 			id: groupId,
 			name: group.name,
-			definitions: [
-				{
-					id: `${groupId}_rotary`,
-					name: 'Rotary controls',
-					description:
-						`Rotate left (-) to decrease, rotate right (+) to increase, and press to reset.\u2028Labels: ${controlLegend}`,
-					type: 'simple',
-					presets: rotaryIds,
-				},
-				{
-					id: `${groupId}_buttons`,
-					name: 'Button controls',
-					description:
-						`Each control has three presets: (-) decreases, RST resets, and (+) increases.\u2028Labels: ${controlLegend}`,
-					type: 'simple',
-					presets: buttonIds,
-				},
-			],
+			definitions: controlDefinitions,
 		})
 	}
 
@@ -376,7 +367,7 @@ function switchValuePreset(
 			text,
 			size: SWITCH_TEXT_SIZE,
 			color: WHITE,
-			bgcolor: SWITCH_INACTIVE_BACKGROUND,
+			bgcolor: enabled ? SWITCH_ON_BACKGROUND : SWITCH_OFF_BACKGROUND,
 			show_topbar: false,
 		},
 		steps: [
@@ -411,7 +402,7 @@ function rotaryPreset(
 		name,
 		style: {
 			text,
-			size: ROTARY_TEXT_SIZE,
+			size: 'auto',
 			color: WHITE,
 			bgcolor,
 			show_topbar: false,
