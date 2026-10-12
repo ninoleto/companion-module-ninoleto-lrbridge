@@ -1,10 +1,22 @@
 # companion-module-ninoleto-lrbridge
 
+**[Download 0.6.0-rc.1](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/releases/tag/v0.6.0-rc.1)** · **[Complete matching source](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/tree/v0.6.0-rc.1)** · **[Contributor handoff](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/blob/v0.6.0-rc.1/CONTRIBUTING.md)**
+
+The version retains `rc.1`; it is a normal GitHub release marked **Latest**. It preserves the accepted beta4.13 module with all action/preset IDs and mappings. Pair it with [LRBridge 0.6.0-rc.1](https://github.com/ninoleto/LRBridge/releases/tag/v0.6.0-rc.1), which includes the tested beta4.10 Lightroom plug-in.
+
+**Source checkout:** `main` retains older module files. For the working release, fork and clone this repository, then create a branch from `v0.6.0-rc.1`. Read the [current README and build instructions](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/blob/v0.6.0-rc.1/README.md); the older module documentation below describes this historical main checkout. RC1-based pull requests can target `release/0.6.0-rc.1`.
+
+The verified module toolchain is **Node 22.20.0** and **Yarn 4.17.0**, with **265/265 tests passing**. The tested setup uses Companion **5.0.1** and Windows x64 Lightroom Classic **15.4.1**. The handoff explains building against matching public LRBridge source; no private beta ZIP is needed.
+
+Use only a **trusted LAN or trusted private VPN**. LRBridge listeners bind beyond loopback, command/internal context endpoints do not authenticate callers, and the earlier complete security review remains unreconciled. The owner accepts these [known limitations](https://github.com/ninoleto/LRBridge/blob/v0.6.0-rc.1/docs/PUBLIC_RELEASE_BLOCKERS.md) for publication. Do not expose LRBridge through public port forwarding or tunnels.
+
+Forks, issues and pull requests are welcome, including work using AI coding agents. The existing [MIT license](LICENSE) remains unchanged. Continued maintenance, review times and future releases are not promised.
+
 Native Bitfocus Companion connection module for **LRBridge**, a small bridge for controlling Adobe Lightroom Classic through HTTP.
 
 This module is intended for Loupedeck / Razer Stream Controller / Stream Deck style workflows in Companion.
 
-## Version
+## Historical main version
 
 `0.4.1` - context-aware feedback build for **LRBridge v0.5.1 or newer**.
 
