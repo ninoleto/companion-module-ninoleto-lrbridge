@@ -1,3 +1,6 @@
+import { ControllerClient, ControllerHttpError, type State } from './controller-client.js'
+import { NativeFeedback } from './native-feedback.js'
+import { publishControllerValues } from './controller-companion.js'
 import { InstanceBase, InstanceStatus, type SomeCompanionConfigField } from '@companion-module/base'
 
 import { GetConfigFields, type ModuleConfig } from './config.js'
@@ -32,6 +35,7 @@ export { UpgradeScripts }
 export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	config!: ModuleConfig
 	bridgeOnline = false
+	controller = this.createController()
 
 	private pollTimer: NodeJS.Timeout | undefined
 	private contextTimer: NodeJS.Timeout | undefined
@@ -43,12 +47,14 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	private actionFeedbackTimers = new Map<string, NodeJS.Timeout>()
 	private actionFeedbackSerials = new Map<string, number>()
 	private autoActionCooldownUntil = 0
+	private pendingSliderMutations = 0
+	private cooldownGeneration = 0
 	private lastLocalSliderCommandAt = 0
 	private lastContextSignature = ''
 	private lastDevelopCounter = ''
 	private sliderChoices: Choice[] = FALLBACK_SLIDERS
 	private groupChoices: Choice[] = FALLBACK_GROUPS
-	private sliderValues: Record<string, unknown> = {}
+	private nativeFeedback = new NativeFeedback()
 
 	constructor(internal: unknown) {
 		super(internal)
@@ -73,6 +79,9 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	}
 
 	async destroy(): Promise<void> {
+		this.resetAutoActionCooldown()
+		this.controller.stop()
+		this.nativeFeedback.reset()
 		this.stopPolling()
 		this.stopContextPolling()
 		this.stopBackgroundFeedbackPolling()
@@ -82,6 +91,11 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	}
 
 	async configUpdated(config: ModuleConfig): Promise<void> {
+		this.resetAutoActionCooldown()
+		this.controller.stop()
+		this.nativeFeedback.reset()
+		this.controller = this.createController()
+		this.publishNativeFeedback()
 		this.config = normalizeConfig(config)
 		this.stopPolling()
 		this.stopContextPolling()
@@ -95,6 +109,62 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		this.updateCooldownVariables()
 	}
 
+	private createController(): ControllerClient {
+		const controller: ControllerClient = new ControllerClient({
+			request: async (path, body) => {
+				const response = await fetch(this.buildUrl(path), {
+					method: body ? 'POST' : 'GET',
+					...(body ? { headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) } : {}),
+					signal: AbortSignal.timeout(Math.max(4000, this.config.requestTimeoutMs)),
+				})
+				const result = (await response.json()) as State
+				if (!response.ok || result.ok === false) {
+					const message = result.error || `HTTP ${response.status}`
+					if (
+						path.split('?')[0] === '/remove/brush' &&
+						response.status === 409 &&
+						message === 'Remove tool, mode or context changed, or another operation is pending.'
+					)
+						throw new ControllerHttpError(response.status, message)
+					throw new Error(message)
+				}
+				return result
+			},
+			adjust: (slider, steps) => this.runAdjustSlider(slider, steps),
+			action: (name) => this.runLightroomAction(name),
+			beforeSensitiveAction: (name) => this.allowSensitiveAction(name),
+			sliderMutationStarted: (): (() => void) =>
+				this.controller === controller ? this.beginSliderMutation() : () => {},
+			nativeConfirmed: (completion) => {
+				const contextRevision = this.nativeFeedback.contextRevision
+				if (this.controller !== controller || !this.nativeFeedback.complete(completion)) return false
+				if (contextRevision !== this.nativeFeedback.contextRevision) controller.clearNativeFeedback()
+				this.publishNativeFeedback()
+				return true
+			},
+			changed: () => {
+				if (this.controller === controller) publishControllerValues(this)
+			},
+		})
+		return controller
+	}
+	private observeNativeContext(data: State, ticket = this.nativeFeedback.version): boolean {
+		const previous = this.nativeFeedback.version
+		if (!this.nativeFeedback.observe(data, ticket)) return false
+		if (previous !== this.nativeFeedback.version) {
+			this.controller.clearNativeFeedback()
+			this.publishNativeFeedback()
+		}
+		return true
+	}
+	private publishNativeFeedback(): void {
+		const values: Record<string, string> = {}
+		for (const slider of FEEDBACK_SUPPORTED_SLIDERS)
+			values[sliderVariableId(slider)] = formatSliderFeedbackValue(this.nativeFeedback.values[slider])
+		this.setVariableValues(values)
+		publishControllerValues(this)
+		this.checkFeedbacks('slider_value_not_zero', 'slider_value_equals_zero', 'slider_value_compare', 'controller_value')
+	}
 	getConfigFields(): SomeCompanionConfigField[] {
 		return GetConfigFields()
 	}
@@ -121,7 +191,9 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 
 	getFeedbackSliderChoices(): Choice[] {
 		const choicesById = new Map(this.getSliderChoices().map((choice) => [choice.id, choice]))
-		return FEEDBACK_SUPPORTED_SLIDERS.map((slider) => choicesById.get(slider) || { id: slider, label: sliderLabel(slider) })
+		return FEEDBACK_SUPPORTED_SLIDERS.map(
+			(slider) => choicesById.get(slider) || { id: slider, label: sliderLabel(slider) },
+		)
 	}
 
 	getGroupChoices(): Choice[] {
@@ -133,36 +205,44 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	}
 
 	getSliderNumericValue(slider: string): number | undefined {
-		const value = this.sliderValues[slider]
+		const value = this.nativeFeedback.values[slider]
 		if (typeof value === 'number' && Number.isFinite(value)) return value
-		if (typeof value === 'string' && value.trim() !== '' && !Number.isNaN(Number(value))) return Number(value)
 		return undefined
 	}
 
 	isAutoActionCooldownActive(): boolean {
-		return Date.now() < this.autoActionCooldownUntil
+		return (this.pendingSliderMutations || 0) > 0 || Date.now() < this.autoActionCooldownUntil
 	}
 
 	async runAdjustSlider(slider: string, amount: number): Promise<void> {
-		this.noteSliderCommandSent()
+		const finish = this.beginSliderMutation()
 		this.lastLocalSliderCommandAt = Date.now()
-		await this.callLRBridge(`/adjust?slider=${encodeURIComponent(slider)}&amount=${encodeURIComponent(String(amount))}`)
+		try {
+			await this.callLRBridge(
+				`/adjust?slider=${encodeURIComponent(slider)}&amount=${encodeURIComponent(String(amount))}`,
+			)
+		} finally {
+			finish()
+		}
 		this.queueActionFeedbackForSliders([slider])
 	}
 
 	async runResetSlider(slider: string): Promise<void> {
-		this.noteSliderCommandSent()
+		const finish = this.beginSliderMutation()
 		this.lastLocalSliderCommandAt = Date.now()
-		await this.callLRBridge(`/reset?slider=${encodeURIComponent(slider)}`)
+		try {
+			await this.callLRBridge(`/reset?slider=${encodeURIComponent(slider)}`)
+		} finally {
+			finish()
+		}
 		this.queueActionFeedbackForSliders([slider])
 	}
 
 	async runLightroomAction(action: string): Promise<void> {
-		if (this.shouldBlockAutoAction(action)) {
-			const remainingSeconds = Math.ceil(this.getAutoActionCooldownRemainingMs() / 1000)
-			const message = `Auto Tone / Auto White Balance cooldown active, wait ${remainingSeconds}s`
-			this.setVariableValues({ last_status: message })
-			this.log('info', message)
+		if (!this.allowSensitiveAction(action)) return
+		if (action === 'selectHealingTool') {
+			await this.controller.button('healing_panel_dust')
+			this.setVariableValues({ last_status: this.controller.lastStatus, last_error: '' })
 			return
 		}
 
@@ -337,7 +417,9 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 
 	private async checkContext(logErrors = true): Promise<void> {
 		try {
+			const ticket = this.nativeFeedback.version
 			const data = await this.callLRBridge('/context')
+			if (!this.observeNativeContext(data as State, ticket)) return
 			const context = extractContextState(data)
 
 			this.setVariableValues({
@@ -389,11 +471,14 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 	private queueFullFeedbackRefresh(reason: string): void {
 		if (this.contextRefreshTimer) clearTimeout(this.contextRefreshTimer)
 
-		this.contextRefreshTimer = setTimeout(() => {
-			this.contextRefreshTimer = undefined
-			this.setVariableValues({ last_status: `Refreshing all Lightroom slider values: ${reason}` })
-			void this.requestFeedbackForSliders(FEEDBACK_SUPPORTED_SLIDERS)
-		}, Number(this.config.contextRefreshDelayMs || 0))
+		this.contextRefreshTimer = setTimeout(
+			() => {
+				this.contextRefreshTimer = undefined
+				this.setVariableValues({ last_status: `Refreshing all Lightroom slider values: ${reason}` })
+				void this.requestFeedbackForSliders(FEEDBACK_SUPPORTED_SLIDERS)
+			},
+			Number(this.config.contextRefreshDelayMs || 0),
+		)
 	}
 
 	private startBackgroundFeedbackPolling(): void {
@@ -432,9 +517,7 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 
 	private queueActionFeedbackForSliders(sliders: string[]): void {
 		const wanted = uniqueStrings(
-			sliders
-				.map((slider) => resolveFeedbackSliderName(slider))
-				.filter((slider): slider is string => Boolean(slider))
+			sliders.map((slider) => resolveFeedbackSliderName(slider)).filter((slider): slider is string => Boolean(slider)),
 		)
 
 		for (const slider of wanted) {
@@ -444,10 +527,13 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 			const serial = (this.actionFeedbackSerials.get(slider) || 0) + 1
 			this.actionFeedbackSerials.set(slider, serial)
 
-			const timer = setTimeout(() => {
-				this.actionFeedbackTimers.delete(slider)
-				void this.requestActionFeedbackForSlider(slider, serial)
-			}, Number(this.config.actionFeedbackDebounceMs || 0))
+			const timer = setTimeout(
+				() => {
+					this.actionFeedbackTimers.delete(slider)
+					void this.requestActionFeedbackForSlider(slider, serial)
+				},
+				Number(this.config.actionFeedbackDebounceMs || 0),
+			)
 
 			this.actionFeedbackTimers.set(slider, timer)
 		}
@@ -463,14 +549,23 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		try {
 			if (this.actionFeedbackSerials.get(slider) !== serial) return
 
+			const initial = this.nativeFeedback.version
+			const before = (await this.callLRBridge('/context')) as State
+			if (!this.observeNativeContext(before, initial)) return
+			const ticket = this.nativeFeedback.version
 			this.setVariableValues({ feedback_last_error: '', last_status: `Feedback request: ${slider}` })
-			const requestData = await this.callLRBridgeFeedback(`/feedback/request?slider=${encodeURIComponent(slider)}`)
+			const requestData = await this.callLRBridgeFeedback(
+				`/feedback/request?purpose=edit&slider=${encodeURIComponent(slider)}`,
+			)
 			const marker = extractFeedbackRequestMarker(requestData)
 
-			const result = await this.pollFreshFeedbackValue(slider, marker, serial, 3000)
-			if (!result || this.actionFeedbackSerials.get(slider) !== serial) return
+			const snapshot = await this.readOwnedFeedbackSnapshot(marker, ticket)
+			if (!snapshot || this.actionFeedbackSerials.get(slider) !== serial) return
+			const result = snapshot.results?.[slider]
 
-			this.updateSliderFeedbackValue(slider, result)
+			const after = (await this.callLRBridge('/context')) as State
+			if (this.nativeFeedback.accept(slider, result, marker, ticket, after, snapshot.context || {}))
+				this.publishNativeFeedback()
 		} catch (error) {
 			const message = errorToMessage(error)
 			this.setVariableValues({ feedback_last_error: message })
@@ -478,37 +573,23 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		}
 	}
 
-	private async pollFreshFeedbackValue(
-		slider: string,
-		marker: FeedbackRequestMarker,
-		serial: number,
-		timeoutMs: number
-	): Promise<unknown | undefined> {
-		const startedAt = Date.now()
-
-		while (Date.now() - startedAt < timeoutMs) {
-			if (this.actionFeedbackSerials.get(slider) !== serial) return undefined
-
-			const data = await this.callLRBridgeFeedback(`/feedback/value?slider=${encodeURIComponent(slider)}`)
-			const result = extractFeedbackSingleResult(data)
-			const value = extractFeedbackResultValue(result)
-
-			if (value !== undefined && value !== null && value !== 'nil' && isFreshFeedbackResult(result, marker)) {
-				return result
-			}
-
+	private async readOwnedFeedbackSnapshot(marker: FeedbackRequestMarker, ticket: number): Promise<State | undefined> {
+		if (!marker.id) return undefined
+		const deadline = Date.now() + 3000
+		do {
+			if (ticket !== this.nativeFeedback.version) return undefined
+			const data = (await this.callLRBridgeFeedback(
+				`/feedback/snapshot?id=${encodeURIComponent(marker.id)}&wait=1`,
+			)) as State
+			if (data.snapshot?.complete && String(data.snapshot.id) === marker.id) return data.snapshot
 			await sleep(120)
-		}
-
-		this.setVariableValues({ feedback_last_error: `Feedback timeout for ${slider}` })
-		return undefined
+		} while (Date.now() < deadline)
+		throw new Error('Lightroom feedback has not completed')
 	}
 
 	private async requestFeedbackForSliders(sliders: string[]): Promise<void> {
 		const requestedSliders = uniqueStrings(
-			sliders
-				.map((slider) => resolveFeedbackSliderName(slider))
-				.filter((slider): slider is string => Boolean(slider))
+			sliders.map((slider) => resolveFeedbackSliderName(slider)).filter((slider): slider is string => Boolean(slider)),
 		)
 
 		if (requestedSliders.length === 0) return
@@ -518,10 +599,16 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		try {
 			// One request-many call is important. Chunking caused early sliders such as Exposure/Contrast
 			// to stay stale when later chunks replaced the active LRBridge feedback request.
-			await this.callLRBridgeFeedback(`/feedback/request-many?sliders=${encodeURIComponent(requestedSliders.join(','))}`)
-
+			const initial = this.nativeFeedback.version
+			const before = (await this.callLRBridge('/context')) as State
+			if (!this.observeNativeContext(before, initial)) return
+			const ticket = this.nativeFeedback.version
+			const request = await this.callLRBridgeFeedback(
+				`/feedback/request-many?purpose=edit&sliders=${encodeURIComponent(requestedSliders.join(','))}`,
+			)
+			const marker = extractFeedbackRequestMarker(request)
 			await sleep(Number(this.config.feedbackReadDelayMs || 0))
-			await this.updateFeedbackValuesFromCache(requestedSliders)
+			await this.updateFeedbackValuesFromCache(requestedSliders, marker, ticket)
 		} catch (error) {
 			const message = errorToMessage(error)
 			this.setVariableValues({ feedback_last_error: message })
@@ -531,70 +618,64 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 		}
 	}
 
-	private async updateFeedbackValuesFromCache(requestedSliders: string[]): Promise<void> {
-		const data = await this.callLRBridgeFeedback('/feedback/all')
-		const values = extractFeedbackValues(data)
-		if (!values) {
-			this.setVariableValues({ feedback_last_error: 'No feedback values returned', last_status: 'No Lightroom slider values returned' })
-			return
-		}
-
-		const variableUpdates: Record<string, string> = {}
-		let updatedCount = 0
-
-		for (const slider of requestedSliders) {
-			const result = values[slider]
-			const value = extractFeedbackResultValue(result)
-			if (value === undefined || value === null || value === 'nil') continue
-
-			this.sliderValues[slider] = value
-			variableUpdates[sliderVariableId(slider)] = formatSliderFeedbackValue(value)
-			updatedCount++
-		}
-
-		if (updatedCount === 0) {
-			this.setVariableValues({ feedback_last_error: 'No slider values updated', last_status: 'No Lightroom slider values updated' })
-			return
-		}
-
-		if (updatedCount > 0) {
-			variableUpdates.feedback_last_update = new Date().toISOString()
-			variableUpdates.feedback_last_error = ''
-			variableUpdates.last_status = `Updated ${updatedCount} Lightroom slider values`
-			this.setVariableValues(variableUpdates)
-			this.checkFeedbacks('slider_value_not_zero', 'slider_value_equals_zero', 'slider_value_compare')
+	private async updateFeedbackValuesFromCache(
+		requestedSliders: string[],
+		marker: FeedbackRequestMarker,
+		ticket: number,
+	): Promise<void> {
+		const snapshot = await this.readOwnedFeedbackSnapshot(marker, ticket)
+		const values = snapshot?.results
+		if (!values) return
+		const after = (await this.callLRBridge('/context')) as State
+		let count = 0
+		for (const slider of requestedSliders)
+			if (this.nativeFeedback.accept(slider, values[slider], marker, ticket, after, snapshot!.context || {})) count++
+		if (count) {
+			this.publishNativeFeedback()
+			this.setVariableValues({ feedback_last_update: new Date().toISOString(), feedback_last_error: '' })
 		}
 	}
 
+	private beginSliderMutation(): () => void {
+		const generation = this.cooldownGeneration || 0
+		this.pendingSliderMutations = (this.pendingSliderMutations || 0) + 1
+		this.noteSliderCommandSent()
+		let finished = false
+		return () => {
+			if (finished) return
+			finished = true
+			if ((this.cooldownGeneration || 0) !== generation) return
+			this.pendingSliderMutations = Math.max(0, (this.pendingSliderMutations || 0) - 1)
+			// Completion or an uncertain failure starts a fresh settling period.
+			this.noteSliderCommandSent()
+		}
+	}
 
-	private updateSliderFeedbackValue(slider: string, result: unknown): void {
-		const value = extractFeedbackResultValue(result)
-		if (value === undefined || value === null || value === 'nil') return
-
-		this.sliderValues[slider] = value
-		this.setVariableValues({
-			[sliderVariableId(slider)]: formatSliderFeedbackValue(value),
-			feedback_last_update: new Date().toISOString(),
-			feedback_last_error: '',
-		})
-		this.checkFeedbacks('slider_value_not_zero', 'slider_value_equals_zero', 'slider_value_compare')
+	private resetAutoActionCooldown(): void {
+		this.cooldownGeneration = (this.cooldownGeneration || 0) + 1
+		this.pendingSliderMutations = 0
+		this.autoActionCooldownUntil = 0
+		this.stopCooldownTimer()
 	}
 
 	private noteSliderCommandSent(): void {
-		const cooldownMs = Number(this.config.autoActionCooldownMs ?? AUTO_ACTION_COOLDOWN_MS)
-		if (cooldownMs <= 0) return
-
-		this.autoActionCooldownUntil = Date.now() + cooldownMs
+		this.autoActionCooldownUntil = Date.now() + AUTO_ACTION_COOLDOWN_MS
 		this.updateCooldownVariables()
 		this.startCooldownTimer()
 	}
 
-	private shouldBlockAutoAction(action: string): boolean {
-		return AUTO_ACTION_COOLDOWN_ACTIONS.includes(action) && this.isAutoActionCooldownActive()
+	private allowSensitiveAction(action: string): boolean {
+		if (!AUTO_ACTION_COOLDOWN_ACTIONS.includes(action) || !this.isAutoActionCooldownActive()) return true
+		const remainingSeconds = Math.ceil(this.getAutoActionCooldownRemainingMs() / 1000)
+		const message = `Waiting for Lightroom to finish the previous adjustment (${remainingSeconds}s): Auto Tone, Auto White Balance, Color and B&W are temporarily unavailable`
+		this.setVariableValues({ last_status: message })
+		this.log('info', message)
+		return false
 	}
 
 	private getAutoActionCooldownRemainingMs(): number {
-		return Math.max(0, this.autoActionCooldownUntil - Date.now())
+		if ((this.pendingSliderMutations || 0) > 0) return AUTO_ACTION_COOLDOWN_MS
+		return Math.max(0, (this.autoActionCooldownUntil || 0) - Date.now())
 	}
 
 	private updateCooldownVariables(): void {
@@ -617,6 +698,7 @@ export default class ModuleInstance extends InstanceBase<ModuleSchema> {
 				this.updateCooldownVariables()
 			}
 		}, 250)
+		this.cooldownTimer.unref?.()
 	}
 
 	private stopCooldownTimer(): void {
@@ -643,7 +725,7 @@ function normalizeConfig(config: ModuleConfig): ModuleConfig {
 		backgroundFeedbackPollIntervalMs: 0,
 		actionFeedbackDebounceMs: timing.actionFeedbackDebounceMs,
 		feedbackReadDelayMs: timing.feedbackReadDelayMs,
-		autoActionCooldownMs: 3000,
+		autoActionCooldownMs: AUTO_ACTION_COOLDOWN_MS,
 		contextPollIntervalMs: 500,
 		contextRefreshDelayMs: timing.contextRefreshDelayMs,
 		developChangeQuietMs: 1500,
@@ -680,7 +762,6 @@ function resolveFeedbackSliderName(slider: string): string | undefined {
 	return FEEDBACK_SUPPORTED_SLIDERS.find((item) => item.toLowerCase() === lower)
 }
 
-
 type ContextState = {
 	activeModule: string
 	selectedPhotoKey: string
@@ -702,7 +783,9 @@ function extractContextState(data: unknown): ContextState {
 		contextCounter: stringifyContextValue(record.contextCounter),
 		contextChangedAt: stringifyContextValue(record.contextChangedAt),
 		lastContextReason: stringifyContextValue(record.lastContextReason || record.contextReason),
-		developCounter: stringifyContextValue(record.developCounter || record.developFingerprint || record.developSignature),
+		developCounter: stringifyContextValue(
+			record.developCounter || record.developFingerprint || record.developSignature,
+		),
 	}
 }
 
@@ -743,20 +826,12 @@ function extractQueueLength(data: unknown): number | undefined {
 
 	for (const candidate of candidates) {
 		if (typeof candidate === 'number') return candidate
-		if (typeof candidate === 'string' && candidate.trim() !== '' && !Number.isNaN(Number(candidate))) return Number(candidate)
+		if (typeof candidate === 'string' && candidate.trim() !== '' && !Number.isNaN(Number(candidate)))
+			return Number(candidate)
 	}
 
 	return undefined
 }
-
-function extractFeedbackValues(data: unknown): Record<string, unknown> | undefined {
-	if (!data || typeof data !== 'object') return undefined
-	const record = data as Record<string, unknown>
-	const values = record.values
-	if (!values || typeof values !== 'object') return undefined
-	return values as Record<string, unknown>
-}
-
 
 type FeedbackRequestMarker = { id?: string; requestedAt?: number }
 
@@ -770,24 +845,6 @@ function extractFeedbackRequestMarker(data: unknown): FeedbackRequestMarker {
 		id: normalizeId(requestRecord.id),
 		requestedAt: normalizeNumber(requestRecord.requestedAt),
 	}
-}
-
-function extractFeedbackSingleResult(data: unknown): unknown | undefined {
-	if (!data || typeof data !== 'object') return undefined
-	const record = data as Record<string, unknown>
-	return record.result
-}
-
-function isFreshFeedbackResult(result: unknown, marker: FeedbackRequestMarker): boolean {
-	if (!result || typeof result !== 'object') return false
-	const record = result as Record<string, unknown>
-	const resultId = normalizeId(record.id)
-	if (marker.id && resultId === marker.id) return true
-
-	const receivedAt = normalizeNumber(record.receivedAt)
-	if (marker.requestedAt !== undefined && receivedAt !== undefined && receivedAt >= marker.requestedAt) return true
-
-	return !marker.id && marker.requestedAt === undefined
 }
 
 function normalizeId(value: unknown): string | undefined {

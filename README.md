@@ -1,12 +1,14 @@
 # companion-module-ninoleto-lrbridge
 
+> **0.6.0-rc.1 release candidate.** Preserves the accepted beta4.13 implementation and all existing action IDs, preset IDs and mappings. Pair with LRBridge 0.6.0-rc.1, which includes the tested beta4.10 Lightroom plug-in behavior. See [installation, verification and release status](docs/RELEASE_NOTES_0.6.0-rc.1.md).
+
 Native Bitfocus Companion connection module for **LRBridge**, a small bridge for controlling Adobe Lightroom Classic through HTTP.
 
 This module is intended for Loupedeck / Razer Stream Controller / Stream Deck style workflows in Companion.
 
 ## Version
 
-`0.4.1` - context-aware feedback build for **LRBridge v0.5.1 or newer**.
+`0.6.0-rc.1` - the accepted beta4.13 module packaged for RC1.
 
 ## What this module does
 
@@ -20,18 +22,18 @@ This module is intended for Loupedeck / Razer Stream Controller / Stream Deck st
 
 ## Required LRBridge version
 
-This module requires **LRBridge v0.5.1 or newer** with the context API:
+Use **LRBridge 0.6.0-rc.1** and its included Lightroom plug-in. The accepted beta.4 app with the beta4.10 plug-in update is the implementation baseline; newer Companion revisions did not require a newer plug-in. Older bridges do not provide the complete Controller contracts. Context API example:
 
 ```json
 {
-  "ok": true,
-  "queueLength": 0,
-  "activeModule": "develop",
-  "selectedPhotoKey": "unique-photo-id-or-path",
-  "contextCounter": 123,
-  "contextChangedAt": 1783387000000,
-  "lastContextReason": "photo",
-  "developCounter": 456
+	"ok": true,
+	"queueLength": 0,
+	"activeModule": "develop",
+	"selectedPhotoKey": "unique-photo-id-or-path",
+	"contextCounter": 123,
+	"contextChangedAt": 1783387000000,
+	"lastContextReason": "photo",
+	"developCounter": 456
 }
 ```
 
@@ -169,13 +171,14 @@ Important design rules:
 Developer build:
 
 ```bash
-yarn install
-yarn build
-yarn package
+corepack yarn install --immutable
+corepack yarn build
+# Set LRBRIDGE_REFERENCE to a matching LRBridge RC1 source checkout.
+corepack yarn test
+corepack yarn exec companion-module-build --prerelease
 ```
 
 The Companion installable package is the generated `.tgz` file.
-
 
 ## Feedback timing defaults
 
@@ -188,17 +191,17 @@ The normal Companion connection UI intentionally exposes only the important sett
 
 Internal timing values are hidden so normal users do not need to tune them.
 
-| Setting | Fast | Normal | Safe |
-| --- | ---: | ---: | ---: |
-| Action feedback debounce | 500 ms | 700 ms | 1000 ms |
-| Feedback read delay | 500 ms | 700 ms | 1000 ms |
-| Context poll interval | 500 ms | 500 ms | 500 ms |
-| Context full refresh delay | 250 ms | 500 ms | 1000 ms |
-| Background all-slider polling | disabled | disabled | disabled |
-| Status poll interval | 1000 ms | 1000 ms | 1000 ms |
-| HTTP timeout | 2000 ms | 2000 ms | 2000 ms |
-| Auto Tone / Auto WB cooldown | 3000 ms | 3000 ms | 3000 ms |
-| Ignore develop counter after own slider command | 1500 ms | 1500 ms | 1500 ms |
+| Setting                                         |     Fast |   Normal |     Safe |
+| ----------------------------------------------- | -------: | -------: | -------: |
+| Action feedback debounce                        |   500 ms |   700 ms |  1000 ms |
+| Feedback read delay                             |   500 ms |   700 ms |  1000 ms |
+| Context poll interval                           |   500 ms |   500 ms |   500 ms |
+| Context full refresh delay                      |   250 ms |   500 ms |  1000 ms |
+| Background all-slider polling                   | disabled | disabled | disabled |
+| Status poll interval                            |  1000 ms |  1000 ms |  1000 ms |
+| HTTP timeout                                    |  2000 ms |  2000 ms |  2000 ms |
+| Auto Tone / Auto WB / Color / B&W cooldown                    |  2200 ms |  2200 ms |  2200 ms |
+| Ignore develop counter after own slider command |  1500 ms |  1500 ms |  1500 ms |
 
 Normal is recommended. Fast can read old Lightroom values on slower machines or heavy catalogs. Safe is slower but more reliable.
 

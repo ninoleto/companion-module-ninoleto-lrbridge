@@ -1,0 +1,575 @@
+(node:73) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+(Use `node --trace-warnings ...` to show where the warning was created)
+TAP version 13
+# (node:80) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: all ordinary catalog buttons pass the actual beta.4 command validator
+ok 1 - all ordinary catalog buttons pass the actual beta.4 command validator
+  ---
+  duration_ms: 2.268758
+  type: 'test'
+  ...
+# Subtest: catalog covers every supported numeric slider and masking correction without duplicates
+ok 2 - catalog covers every supported numeric slider and masking correction without duplicates
+  ---
+  duration_ms: 0.329366
+  type: 'test'
+  ...
+# Subtest: native ±5 dispatch immediately while an unrelated state read is blocked
+ok 3 - native ±5 dispatch immediately while an unrelated state read is blocked
+  ---
+  duration_ms: 1.404552
+  type: 'test'
+  ...
+# Subtest: baseline native adjustment implementation is unchanged
+ok 4 - baseline native adjustment implementation is unchanged
+  ---
+  duration_ms: 0.41388
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Exposure result follows worker execution
+ok 5 - real Reset receipt contract: Exposure result follows worker execution
+  ---
+  duration_ms: 2.047471
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Contrast result follows worker execution
+ok 6 - real Reset receipt contract: Contrast result follows worker execution
+  ---
+  duration_ms: 0.375814
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Vibrance result follows worker execution
+ok 7 - real Reset receipt contract: Vibrance result follows worker execution
+  ---
+  duration_ms: 0.457665
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Temperature result follows worker execution
+ok 8 - real Reset receipt contract: Temperature result follows worker execution
+  ---
+  duration_ms: 0.36591
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: ProfileAmount result follows worker execution
+ok 9 - real Reset receipt contract: ProfileAmount result follows worker execution
+  ---
+  duration_ms: 0.556692
+  type: 'test'
+  ...
+# Subtest: wrongly owned Reset result is rejected and never used as baseline
+ok 10 - wrongly owned Reset result is rejected and never used as baseline
+  ---
+  duration_ms: 0.842544
+  type: 'test'
+  ...
+# Subtest: network failure does not replay a guarded Export action
+ok 11 - network failure does not replay a guarded Export action
+  ---
+  duration_ms: 0.76526
+  type: 'test'
+  ...
+# Subtest: masked Point Color scales values and supplies exact ownership to the real handler
+ok 12 - masked Point Color scales values and supplies exact ownership to the real handler
+  ---
+  duration_ms: 2.273554
+  type: 'test'
+  ...
+# Subtest: regular Masking uses one begin/end with the same original binding
+ok 13 - regular Masking uses one begin/end with the same original binding
+  ---
+  duration_ms: 0.815273
+  type: 'test'
+  ...
+# Subtest: Blue curve inset endpoint survives adding/deleting interior points
+ok 14 - Blue curve inset endpoint survives adding/deleting interior points
+  ---
+  duration_ms: 1.175074
+  type: 'test'
+  ...
+# Subtest: missing swatch is rejected without a write
+ok 15 - missing swatch is rejected without a write
+  ---
+  duration_ms: 0.266694
+  type: 'test'
+  ...
+# Subtest: Companion presets reference actual action IDs and the connection label
+ok 16 - Companion presets reference actual action IDs and the connection label
+  ---
+  duration_ms: 5.741331
+  type: 'test'
+  ...
+# Subtest: global swatch selection satisfies the real beta.4 ownership contract
+ok 17 - global swatch selection satisfies the real beta.4 ownership contract
+  ---
+  duration_ms: 1.509848
+  type: 'test'
+  ...
+# Subtest: export requested result is accepted without claiming exported files are complete
+ok 18 - export requested result is accepted without claiming exported files are complete
+  ---
+  duration_ms: 0.402794
+  type: 'test'
+  ...
+# Subtest: disabled and ambiguous profiles produce no write
+ok 19 - disabled and ambiguous profiles produce no write
+  ---
+  duration_ms: 0.417796
+  type: 'test'
+  ...
+# Subtest: native Reset admission blocks only its own slider and releases before completion
+ok 20 - native Reset admission blocks only its own slider and releases before completion
+  ---
+  duration_ms: 20.680273
+  type: 'test'
+  ...
+# Subtest: adjacent queued encoder ticks coalesce and keep the resulting displayed units
+ok 21 - adjacent queued encoder ticks coalesce and keep the resulting displayed units
+  ---
+  duration_ms: 1.454185
+  type: 'test'
+  ...
+# Subtest: brush Reset uses returned native value rather than a guessed zero
+ok 22 - brush Reset uses returned native value rather than a guessed zero
+  ---
+  duration_ms: 0.490293
+  type: 'test'
+  ...
+# Subtest: regular Masking Reset consumes its exact correction result and actual value
+ok 23 - regular Masking Reset consumes its exact correction result and actual value
+  ---
+  duration_ms: 0.574427
+  type: 'test'
+  ...
+# (node:81) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# (node:81) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# Subtest: Crop reuses recent confirmed feedback after checking current context, retaining post-write reads
+ok 24 - Crop reuses recent confirmed feedback after checking current context, retaining post-write reads
+  ---
+  duration_ms: 6.39765
+  type: 'test'
+  ...
+# Subtest: Crop refreshes an expired or unavailable cached SDK baseline
+ok 25 - Crop refreshes an expired or unavailable cached SDK baseline
+  ---
+  duration_ms: 1.506933
+  type: 'test'
+  ...
+# Subtest: Crop refreshes after an external Develop revision and uses the new SDK value
+ok 26 - Crop refreshes after an external Develop revision and uses the new SDK value
+  ---
+  duration_ms: 0.817837
+  type: 'test'
+  ...
+# Subtest: Crop rejects changed photo/context or leaving Develop before writing
+ok 27 - Crop rejects changed photo/context or leaving Develop before writing
+  ---
+  duration_ms: 2.359201
+  type: 'test'
+  ...
+# Subtest: Crop never turns unavailable feedback into a guessed adjustment
+ok 28 - Crop never turns unavailable feedback into a guessed adjustment
+  ---
+  duration_ms: 0.636048
+  type: 'test'
+  ...
+# Subtest: Crop rounds higher precision SDK baselines to the dedicated API precision
+ok 29 - Crop rounds higher precision SDK baselines to the dedicated API precision
+  ---
+  duration_ms: 0.7321
+  type: 'test'
+  ...
+# Subtest: Crop Reset remains a confirmation barrier and does not publish the requested value early
+ok 30 - Crop Reset remains a confirmation barrier and does not publish the requested value early
+  ---
+  duration_ms: 5.453256
+  type: 'test'
+  ...
+# (node:82) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Color Grading successive turns dispatch while SDK feedback still reports the previous values
+ok 31 - Color Grading successive turns dispatch while SDK feedback still reports the previous values
+  ---
+  duration_ms: 13.130574
+  type: 'test'
+  ...
+# Subtest: Color Grading alternating Hue/Saturation retains both pending axes
+ok 32 - Color Grading alternating Hue/Saturation retains both pending axes
+  ---
+  duration_ms: 1.145721
+  type: 'test'
+  ...
+# Subtest: Every Color Grading region and scalar dispatches the existing Web Controller command
+ok 33 - Every Color Grading region and scalar dispatches the existing Web Controller command
+  ---
+  duration_ms: 2.926738
+  type: 'test'
+  ...
+# Subtest: Delayed grading feedback remains pending, then external Lightroom changes become the new baseline
+ok 34 - Delayed grading feedback remains pending, then external Lightroom changes become the new baseline
+  ---
+  duration_ms: 2.113719
+  type: 'test'
+  ...
+# Subtest: A queued grading edit cannot cross a photo change
+ok 35 - A queued grading edit cannot cross a photo change
+  ---
+  duration_ms: 6.207098
+  type: 'test'
+  ...
+# Subtest: A failed grading request cancels waiting turns without replaying any command
+ok 36 - A failed grading request cancels waiting turns without replaying any command
+  ---
+  duration_ms: 6.228891
+  type: 'test'
+  ...
+# Subtest: Color Grading region Reset separates previous targets from the following turn
+ok 37 - Color Grading region Reset separates previous targets from the following turn
+  ---
+  duration_ms: 1.59957
+  type: 'test'
+  ...
+# Subtest: Color Grading scalar Reset is confirmed before applying a following fine turn
+ok 38 - Color Grading scalar Reset is confirmed before applying a following fine turn
+  ---
+  duration_ms: 0.71861
+  type: 'test'
+  ...
+# Subtest: Fine batch preserves direction changes at the maximum instead of summing them away
+ok 39 - Fine batch preserves direction changes at the maximum instead of summing them away
+  ---
+  duration_ms: 2.205384
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for Exposure
+ok 40 - Fine button matches the Web Controller step for Exposure
+  ---
+  duration_ms: 0.988669
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for Contrast
+ok 41 - Fine button matches the Web Controller step for Contrast
+  ---
+  duration_ms: 0.387893
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for Temperature
+ok 42 - Fine button matches the Web Controller step for Temperature
+  ---
+  duration_ms: 0.300623
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for ProfileAmount
+ok 43 - Fine button matches the Web Controller step for ProfileAmount
+  ---
+  duration_ms: 0.367552
+  type: 'test'
+  ...
+# Subtest: New Controller button and rotary presets explicitly use Fine steps
+ok 44 - New Controller button and rotary presets explicitly use Fine steps
+  ---
+  duration_ms: 6.633648
+  type: 'test'
+  ...
+# Subtest: Fine turns on either side of Reset use the actual serial-worker Reset baseline
+ok 45 - Fine turns on either side of Reset use the actual serial-worker Reset baseline
+  ---
+  duration_ms: 2.39196
+  type: 'test'
+  ...
+# Subtest: Fine Nudge rejects a completion from a different server epoch without replay
+ok 46 - Fine Nudge rejects a completion from a different server epoch without replay
+  ---
+  duration_ms: 0.705241
+  type: 'test'
+  ...
+# (node:92) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Healing Size and Feather use exact operation completions and retain serial ordering
+ok 47 - Healing Size and Feather use exact operation completions and retain serial ordering
+  ---
+  duration_ms: 9.04185
+  type: 'test'
+  ...
+# Subtest: SDK failure ends immediately, preserves its reason and cancels already-queued Healing edits
+ok 48 - SDK failure ends immediately, preserves its reason and cancels already-queued Healing edits
+  ---
+  duration_ms: 2.006571
+  type: 'test'
+  ...
+# Subtest: A displayed matching value cannot finish before its exact SDK operation completes
+ok 49 - A displayed matching value cannot finish before its exact SDK operation completes
+  ---
+  duration_ms: 66.83978
+  type: 'test'
+  ...
+# Subtest: Selected Opacity and Feather keep SDK units, native precision and exact repair-token transitions
+ok 50 - Selected Opacity and Feather keep SDK units, native precision and exact repair-token transitions
+  ---
+  duration_ms: 4.649931
+  type: 'test'
+  ...
+# Subtest: Changing the selected repair before a queued edit cancels it without sending
+ok 51 - Changing the selected repair before a queued edit cancels it without sending
+  ---
+  duration_ms: 1.24716
+  type: 'test'
+  ...
+# Subtest: Healing preferences follow Lightroom mode availability before any write
+ok 52 - Healing preferences follow Lightroom mode availability before any write
+  ---
+  duration_ms: 2.56176
+  type: 'test'
+  ...
+# Subtest: Generative AI and Detect Objects serialize exact confirmations and do not resend already-active On
+ok 53 - Generative AI and Detect Objects serialize exact confirmations and do not resend already-active On
+  ---
+  duration_ms: 1.756552
+  type: 'test'
+  ...
+# Subtest: An operation completion from another photo cannot confirm Healing
+ok 54 - An operation completion from another photo cannot confirm Healing
+  ---
+  duration_ms: 2.883885
+  type: 'test'
+  ...
+# Subtest: A matching value without the exact operation receipt is not accepted as success
+ok 55 - A matching value without the exact operation receipt is not accepted as success
+  ---
+  duration_ms: 0.907819
+  type: 'test'
+  ...
+# Subtest: Repair completion must name the resulting selected repair token
+ok 56 - Repair completion must name the resulting selected repair token
+  ---
+  duration_ms: 1.340308
+  type: 'test'
+  ...
+# Subtest: Rapid Close then Open waits for exact serial completions and reaches open state
+ok 57 - Rapid Close then Open waits for exact serial completions and reaches open state
+  ---
+  duration_ms: 6.225755
+  type: 'test'
+  ...
+# Subtest: Refresh selected repair reports requested rather than inventing native completion
+ok 58 - Refresh selected repair reports requested rather than inventing native completion
+  ---
+  duration_ms: 0.94887
+  type: 'test'
+  ...
+# (node:94) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Open Healing works while brush preferences are unavailable because another tool is selected
+ok 59 - Open Healing works while brush preferences are unavailable because another tool is selected
+  ---
+  duration_ms: 10.382369
+  type: 'test'
+  ...
+# Subtest: Close Healing works with normal or unavailable brush preferences
+ok 60 - Close Healing works with normal or unavailable brush preferences
+  ---
+  duration_ms: 4.03949
+  type: 'test'
+  ...
+# Subtest: Explicit Open and Close are idempotent and Close preserves another selected tool
+ok 61 - Explicit Open and Close are idempotent and Close preserves another selected tool
+  ---
+  duration_ms: 0.863084
+  type: 'test'
+  ...
+# Subtest: Open Healing preserves binding checks and does not retry a rejected photo change
+ok 62 - Open Healing preserves binding checks and does not retry a rejected photo change
+  ---
+  duration_ms: 0.970502
+  type: 'test'
+  ...
+# Subtest: Open/Close still refuses a pending Healing operation
+ok 63 - Open/Close still refuses a pending Healing operation
+  ---
+  duration_ms: 0.653735
+  type: 'test'
+  ...
+# Subtest: Opening exception does not enable brush edits while Healing is closed
+ok 64 - Opening exception does not enable brush edits while Healing is closed
+  ---
+  duration_ms: 2501.848532
+  type: 'test'
+  ...
+# Subtest: Remove, Heal and Clone retain supported SDK values with readable labels
+ok 65 - Remove, Heal and Clone retain supported SDK values with readable labels
+  ---
+  duration_ms: 2.027161
+  type: 'test'
+  ...
+# Subtest: Unified preset browser has one template set: Rotary, minus, supported Reset, plus; buttons last
+ok 66 - Unified preset browser has one template set: Rotary, minus, supported Reset, plus; buttons last
+  ---
+  duration_ms: 8.332605
+  type: 'test'
+  ...
+# (node:95) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: masked Point Color swatches and all scalars pass the actual beta.4 handlers and state
+ok 67 - masked Point Color swatches and all scalars pass the actual beta.4 handlers and state
+  ---
+  duration_ms: 22.238583
+  type: 'test'
+  ...
+# Subtest: masked Point Color range boundaries and translations pass actual beta.4 admission
+ok 68 - masked Point Color range boundaries and translations pass actual beta.4 admission
+  ---
+  duration_ms: 9.468731
+  type: 'test'
+  ...
+# Subtest: beta.4 rejects bare UUIDs for Masking corrections, curves and Refine Saturation
+ok 69 - beta.4 rejects bare UUIDs for Masking corrections, curves and Refine Saturation
+  ---
+  duration_ms: 2.493759
+  type: 'test'
+  ...
+# Subtest: every regular Masking control admits Set, fine ± and Reset through actual beta.4 validation
+ok 70 - every regular Masking control admits Set, fine ± and Reset through actual beta.4 validation
+  ---
+  duration_ms: 58.426948
+  type: 'test'
+  ...
+# Subtest: masked curve edits satisfy the actual curve_ admission rule
+ok 71 - masked curve edits satisfy the actual curve_ admission rule
+  ---
+  duration_ms: 3.446465
+  type: 'test'
+  ...
+# Subtest: masked Refine Saturation satisfies the actual refine_ admission rule
+ok 72 - masked Refine Saturation satisfies the actual refine_ admission rule
+  ---
+  duration_ms: 2.122531
+  type: 'test'
+  ...
+# Subtest: photo and mask changes still reject a pending gesture end
+ok 73 - photo and mask changes still reject a pending gesture end
+  ---
+  duration_ms: 2.477126
+  type: 'test'
+  ...
+# Subtest: an uncertain Masking end failure is not retried
+ok 74 - an uncertain Masking end failure is not retried
+  ---
+  duration_ms: 1.116898
+  type: 'test'
+  ...
+# (node:101) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: confirmed SDK value updates both ordinary slider and Controller variables without waiting for broad polling
+ok 75 - confirmed SDK value updates both ordinary slider and Controller variables without waiting for broad polling
+  ---
+  duration_ms: 9.20678
+  type: 'test'
+  ...
+# Subtest: background read already in flight cannot overwrite a newer exact completion
+ok 76 - background read already in flight cannot overwrite a newer exact completion
+  ---
+  duration_ms: 3.981584
+  type: 'test'
+  ...
+# Subtest: coalesced queued lower-ID feedback reads use their exact snapshot, never higher-ID stale global cache
+ok 77 - coalesced queued lower-ID feedback reads use their exact snapshot, never higher-ID stale global cache
+  ---
+  duration_ms: 1.862377
+  type: 'test'
+  ...
+# Subtest: legacy single-slider refresh also uses the exact owned snapshot and can mark a control unavailable
+ok 78 - legacy single-slider refresh also uses the exact owned snapshot and can mark a control unavailable
+  ---
+  duration_ms: 0.905116
+  type: 'test'
+  ...
+# Subtest: wrong snapshot ownership or a changed photo cannot publish feedback
+ok 79 - wrong snapshot ownership or a changed photo cannot publish feedback
+  ---
+  duration_ms: 0.158063
+  type: 'test'
+  ...
+# Subtest: stale context responses cannot clear a newer observed SDK completion
+ok 80 - stale context responses cannot clear a newer observed SDK completion
+  ---
+  duration_ms: 0.099367
+  type: 'test'
+  ...
+# Subtest: server epoch or connection reset invalidates all old values and read tickets
+ok 81 - server epoch or connection reset invalidates all old values and read tickets
+  ---
+  duration_ms: 0.625793
+  type: 'test'
+  ...
+# Subtest: old connection client cannot publish a completion into its replacement
+ok 82 - old connection client cannot publish a completion into its replacement
+  ---
+  duration_ms: 0.373831
+  type: 'test'
+  ...
+# (node:136) [UNDICI-EHPA] Warning: EnvHttpProxyAgent is experimental, expect them to change at any time.
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Develop actions contains only the requested five clearly labelled controls
+ok 83 - Develop actions contains only the requested five clearly labelled controls
+  ---
+  duration_ms: 8.420594
+  type: 'test'
+  ...
+# Subtest: Application follows the Web Controller groups and includes a Zoom rotary and secondary display controls
+ok 84 - Application follows the Web Controller groups and includes a Zoom rotary and secondary display controls
+  ---
+  duration_ms: 3.678618
+  type: 'test'
+  ...
+# Subtest: Mask creation, addition and subtraction have independent complete sections
+ok 85 - Mask creation, addition and subtraction have independent complete sections
+  ---
+  duration_ms: 4.949693
+  type: 'test'
+  ...
+# Subtest: Windows Healing Add/Subtract are omitted from new presets and choices while existing IDs remain callable
+ok 86 - Windows Healing Add/Subtract are omitted from new presets and choices while existing IDs remain callable
+  ---
+  duration_ms: 2.706023
+  type: 'test'
+  ...
+# Subtest: Red Eye and Pet Eye use the packaged route operation names
+ok 87 - Red Eye and Pet Eye use the packaged route operation names
+  ---
+  duration_ms: 2.464236
+  type: 'test'
+  ...
+# Subtest: Signed numeric value feedback is orange below zero, blue above zero, base at zero and gray when unavailable
+ok 88 - Signed numeric value feedback is orange below zero, blue above zero, base at zero and gray when unavailable
+  ---
+  duration_ms: 2.223531
+  type: 'test'
+  ...
+# Subtest: On/Off, Delete, Reset and ordinary button styles communicate distinct meanings
+ok 89 - On/Off, Delete, Reset and ordinary button styles communicate distinct meanings
+  ---
+  duration_ms: 2.691912
+  type: 'test'
+  ...
+# Subtest: Reset All remains explicitly armed and tells the preset user how to enable it
+ok 90 - Reset All remains explicitly armed and tells the preset user how to enable it
+  ---
+  duration_ms: 9.213354
+  type: 'test'
+  ...
+# Subtest: Simple preset API keeps supported automatic shrinking without inventing unsupported style flags
+ok 91 - Simple preset API keeps supported automatic shrinking without inventing unsupported style flags
+  ---
+  duration_ms: 2.076074
+  type: 'test'
+  ...
+1..91
+# tests 91
+# suites 0
+# pass 91
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2650.99733

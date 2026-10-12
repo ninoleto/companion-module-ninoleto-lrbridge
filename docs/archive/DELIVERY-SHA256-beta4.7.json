@@ -1,0 +1,32 @@
+{
+  "module": "0.5.0-beta.4.7",
+  "based_on": "0.5.0-beta.4.6",
+  "bridge": "LRBridge 0.6.0-beta.4 guarded-set 20261010T165731Z",
+  "plugin": "beta4.6 update unchanged",
+  "verification": {
+    "node": "22.20.0",
+    "automated_tests_passed": 171,
+    "automated_tests_failed": 0,
+    "typescript_build": "passed",
+    "package_manifest": "valid",
+    "bundled_javascript_syntax": "valid",
+    "presets": 1028,
+    "actual_companion_renderer": "5.0.1",
+    "render_checks": 2056,
+    "render_fit_failures": 0,
+    "preserved_beta46_inputs": "checksum verified",
+    "live_Companion_Lightroom_test": "not performed"
+  },
+  "files": [
+    {
+      "name": "ninoleto-lrbridge-0.5.0-beta.4.7.tgz",
+      "bytes": 42418,
+      "sha256": "f2cb2926663700c75c715db070d05ae67ddb05ec14a163ebeb988fea9000a959"
+    },
+    {
+      "name": "LRBridge-Companion-beta4.7-Read-Me.txt",
+      "bytes": 3475,
+      "sha256": "ea066a2bdc174a1cd7201212c79f3a0de8c3dc72f5cbf0077556c2305bb4c6cf"
+    }
+  ]
+}

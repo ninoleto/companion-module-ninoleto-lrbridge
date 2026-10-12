@@ -344,14 +344,14 @@ export const LIGHTROOM_ACTIONS: Choice[] = [
 	{ id: 'selectMaskingTool', label: 'Select Masking Tool' },
 ]
 
-export const AUTO_ACTION_COOLDOWN_ACTIONS = ['setAutoTone', 'setAutoWhiteBalance']
+export const AUTO_ACTION_COOLDOWN_ACTIONS = ['setAutoTone', 'setAutoWhiteBalance', 'photo.treatment']
 export const AUTO_ACTION_COOLDOWN_MS = 2200
 
 export const FALLBACK_SLIDERS: Choice[] = SLIDER_GROUPS.flatMap((group) =>
 	group.sliders.map((slider) => ({
 		id: slider,
 		label: `${group.name} - ${SLIDER_LABELS[slider] || slider}`,
-	}))
+	})),
 )
 
 export const FALLBACK_GROUPS: Choice[] = SLIDER_GROUPS.map((group) => ({

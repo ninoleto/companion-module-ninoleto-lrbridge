@@ -1,10 +1,12 @@
 import { FEEDBACK_SUPPORTED_SLIDERS, sliderLabel, sliderVariableId } from './choices.js'
+import { controllerVariables } from './controller-companion.js'
 import type ModuleInstance from './main.js'
 
 export type VariablesSchema = Record<string, string>
 
 export function UpdateVariableDefinitions(self: ModuleInstance): void {
 	self.setVariableDefinitions({
+		...controllerVariables(),
 		connected: { name: 'LRBridge connected yes/no' },
 		last_status: { name: 'Last LRBridge status message' },
 		last_error: { name: 'Last LRBridge error' },
@@ -22,14 +24,18 @@ export function UpdateVariableDefinitions(self: ModuleInstance): void {
 		develop_counter: { name: 'LRBridge develop settings counter' },
 		context_last_update: { name: 'Last LRBridge context poll timestamp' },
 		context_last_error: { name: 'Last LRBridge context poll error' },
-		auto_action_cooldown_active: { name: 'Auto Tone / Auto White Balance cooldown active yes/no' },
-		auto_action_cooldown_remaining_ms: { name: 'Auto Tone / Auto White Balance cooldown remaining milliseconds' },
-		auto_action_cooldown_remaining_s: { name: 'Auto Tone / Auto White Balance cooldown remaining seconds' },
+		auto_action_cooldown_active: { name: 'Auto Tone / Auto White Balance / Color / B&W cooldown active yes/no' },
+		auto_action_cooldown_remaining_ms: {
+			name: 'Auto Tone / Auto White Balance / Color / B&W cooldown remaining milliseconds',
+		},
+		auto_action_cooldown_remaining_s: {
+			name: 'Auto Tone / Auto White Balance / Color / B&W cooldown remaining seconds',
+		},
 		...Object.fromEntries(
 			FEEDBACK_SUPPORTED_SLIDERS.map((slider) => [
 				sliderVariableId(slider),
 				{ name: `Lightroom slider value: ${sliderLabel(slider)}` },
-			])
+			]),
 		),
 	})
 }

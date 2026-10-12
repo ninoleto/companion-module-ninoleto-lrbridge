@@ -1,6 +1,6 @@
 {
   "name": "ninoleto-lrbridge",
-  "version": "0.4.2",
+  "version": "0.6.0-rc.1",
   "main": "dist/main.js",
   "type": "module",
   "scripts": {
@@ -10,7 +10,8 @@
     "build:main": "tsc -p tsconfig.build.json",
     "dev": "tsc -p tsconfig.build.json --watch",
     "lint:raw": "eslint",
-    "lint": "run lint:raw ."
+    "lint": "run lint:raw .",
+    "test": "node --test tests/*.test.mjs"
   },
   "license": "MIT",
   "repository": {
@@ -22,12 +23,13 @@
     "yarn": "^4"
   },
   "dependencies": {
-    "@companion-module/base": "2.0.4"
+    "@companion-module/base": "2.1.0"
   },
   "devDependencies": {
     "@companion-module/tools": "^3.0.1",
     "@types/node": "^22.19.17",
     "eslint": "^9.39.4",
+    "fengari": "0.1.5",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
     "prettier": "^3.8.3",

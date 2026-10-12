@@ -1,0 +1,1042 @@
+TAP version 13
+# Subtest: clipboard_copy: first press uses current photo despite stale Companion family feedback
+ok 1 - clipboard_copy: first press uses current photo despite stale Companion family feedback
+  ---
+  duration_ms: 80.987566
+  type: 'test'
+  ...
+# Subtest: clipboard_copy: photo change after invocation cancels before mutation
+ok 2 - clipboard_copy: photo change after invocation cancels before mutation
+  ---
+  duration_ms: 1.955804
+  type: 'test'
+  ...
+# Subtest: clipboard_paste: first press uses current photo despite stale Companion family feedback
+ok 3 - clipboard_paste: first press uses current photo despite stale Companion family feedback
+  ---
+  duration_ms: 70.366235
+  type: 'test'
+  ...
+# Subtest: clipboard_paste: photo change after invocation cancels before mutation
+ok 4 - clipboard_paste: photo change after invocation cancels before mutation
+  ---
+  duration_ms: 1.057453
+  type: 'test'
+  ...
+# Subtest: export_dialog: first press uses current photo despite stale Companion family feedback
+ok 5 - export_dialog: first press uses current photo despite stale Companion family feedback
+  ---
+  duration_ms: 69.274458
+  type: 'test'
+  ...
+# Subtest: export_dialog: photo change after invocation cancels before mutation
+ok 6 - export_dialog: photo change after invocation cancels before mutation
+  ---
+  duration_ms: 0.531905
+  type: 'test'
+  ...
+# Subtest: export_previous: first press uses current photo despite stale Companion family feedback
+ok 7 - export_previous: first press uses current photo despite stale Companion family feedback
+  ---
+  duration_ms: 66.852035
+  type: 'test'
+  ...
+# Subtest: export_previous: photo change after invocation cancels before mutation
+ok 8 - export_previous: photo change after invocation cancels before mutation
+  ---
+  duration_ms: 1.495255
+  type: 'test'
+  ...
+# Subtest: healing_panel_dust: first press uses current photo despite stale Companion family feedback
+ok 9 - healing_panel_dust: first press uses current photo despite stale Companion family feedback
+  ---
+  duration_ms: 28.134328
+  type: 'test'
+  ...
+# Subtest: healing_panel_dust: photo change after invocation cancels before mutation
+ok 10 - healing_panel_dust: photo change after invocation cancels before mutation
+  ---
+  duration_ms: 4.864396
+  type: 'test'
+  ...
+# Subtest: clipboard_copy: one press waits for expired available SDK cache to refresh
+ok 11 - clipboard_copy: one press waits for expired available SDK cache to refresh
+  ---
+  duration_ms: 66.607101
+  type: 'test'
+  ...
+# Subtest: clipboard_copy: Library module remains supported
+ok 12 - clipboard_copy: Library module remains supported
+  ---
+  duration_ms: 1.230611
+  type: 'test'
+  ...
+# Subtest: clipboard_copy: uncertain completion is never automatically retried
+ok 13 - clipboard_copy: uncertain completion is never automatically retried
+  ---
+  duration_ms: 1.763154
+  type: 'test'
+  ...
+# Subtest: clipboard_paste: one press waits for expired available SDK cache to refresh
+ok 14 - clipboard_paste: one press waits for expired available SDK cache to refresh
+  ---
+  duration_ms: 67.729038
+  type: 'test'
+  ...
+# Subtest: clipboard_paste: Library module remains supported
+ok 15 - clipboard_paste: Library module remains supported
+  ---
+  duration_ms: 8.125954
+  type: 'test'
+  ...
+# Subtest: clipboard_paste: uncertain completion is never automatically retried
+ok 16 - clipboard_paste: uncertain completion is never automatically retried
+  ---
+  duration_ms: 1.922181
+  type: 'test'
+  ...
+# Subtest: export_dialog: one press waits for expired available SDK cache to refresh
+ok 17 - export_dialog: one press waits for expired available SDK cache to refresh
+  ---
+  duration_ms: 75.398504
+  type: 'test'
+  ...
+# Subtest: export_dialog: Library module remains supported
+ok 18 - export_dialog: Library module remains supported
+  ---
+  duration_ms: 1.089687
+  type: 'test'
+  ...
+# Subtest: export_dialog: uncertain completion is never automatically retried
+ok 19 - export_dialog: uncertain completion is never automatically retried
+  ---
+  duration_ms: 1.951426
+  type: 'test'
+  ...
+# Subtest: export_previous: one press waits for expired available SDK cache to refresh
+ok 20 - export_previous: one press waits for expired available SDK cache to refresh
+  ---
+  duration_ms: 67.034341
+  type: 'test'
+  ...
+# Subtest: export_previous: Library module remains supported
+ok 21 - export_previous: Library module remains supported
+  ---
+  duration_ms: 0.854594
+  type: 'test'
+  ...
+# Subtest: export_previous: uncertain completion is never automatically retried
+ok 22 - export_previous: uncertain completion is never automatically retried
+  ---
+  duration_ms: 0.983915
+  type: 'test'
+  ...
+# Subtest: Close Healing also uses invocation photo instead of stale Companion family feedback
+ok 23 - Close Healing also uses invocation photo instead of stale Companion family feedback
+  ---
+  duration_ms: 13.141784
+  type: 'test'
+  ...
+# Subtest: Open Healing refreshes an apparent already-open cache after the tool was closed directly in Lightroom
+ok 24 - Open Healing refreshes an apparent already-open cache after the tool was closed directly in Lightroom
+  ---
+  duration_ms: 3.627617
+  type: 'test'
+  ...
+# Subtest: Open Healing remains a no-op when a newer SDK snapshot confirms the tool is already open
+ok 25 - Open Healing remains a no-op when a newer SDK snapshot confirms the tool is already open
+  ---
+  duration_ms: 3.885273
+  type: 'test'
+  ...
+# Subtest: all ordinary catalog buttons pass the actual beta.4 command validator
+ok 26 - all ordinary catalog buttons pass the actual beta.4 command validator
+  ---
+  duration_ms: 4.207286
+  type: 'test'
+  ...
+# Subtest: catalog covers every supported numeric slider and masking correction without duplicates
+ok 27 - catalog covers every supported numeric slider and masking correction without duplicates
+  ---
+  duration_ms: 0.513998
+  type: 'test'
+  ...
+# Subtest: native ±5 dispatch immediately while an unrelated state read is blocked
+ok 28 - native ±5 dispatch immediately while an unrelated state read is blocked
+  ---
+  duration_ms: 3.250525
+  type: 'test'
+  ...
+# Subtest: baseline native adjustment implementation is unchanged
+ok 29 - baseline native adjustment implementation is unchanged
+  ---
+  duration_ms: 0.465832
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Exposure result follows worker execution
+ok 30 - real Reset receipt contract: Exposure result follows worker execution
+  ---
+  duration_ms: 4.835491
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Contrast result follows worker execution
+ok 31 - real Reset receipt contract: Contrast result follows worker execution
+  ---
+  duration_ms: 0.555815
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Vibrance result follows worker execution
+ok 32 - real Reset receipt contract: Vibrance result follows worker execution
+  ---
+  duration_ms: 0.88136
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: Temperature result follows worker execution
+ok 33 - real Reset receipt contract: Temperature result follows worker execution
+  ---
+  duration_ms: 0.969344
+  type: 'test'
+  ...
+# Subtest: real Reset receipt contract: ProfileAmount result follows worker execution
+ok 34 - real Reset receipt contract: ProfileAmount result follows worker execution
+  ---
+  duration_ms: 1.069471
+  type: 'test'
+  ...
+# Subtest: wrongly owned Reset result is rejected and never used as baseline
+ok 35 - wrongly owned Reset result is rejected and never used as baseline
+  ---
+  duration_ms: 3.223912
+  type: 'test'
+  ...
+# Subtest: network failure does not replay a guarded Export action
+ok 36 - network failure does not replay a guarded Export action
+  ---
+  duration_ms: 1.677319
+  type: 'test'
+  ...
+# Subtest: masked Point Color scales values and supplies exact ownership to the real handler
+ok 37 - masked Point Color scales values and supplies exact ownership to the real handler
+  ---
+  duration_ms: 5.295336
+  type: 'test'
+  ...
+# Subtest: regular Masking uses one begin/end with the same original binding
+ok 38 - regular Masking uses one begin/end with the same original binding
+  ---
+  duration_ms: 1.239588
+  type: 'test'
+  ...
+# Subtest: Blue curve inset endpoint survives adding/deleting interior points
+ok 39 - Blue curve inset endpoint survives adding/deleting interior points
+  ---
+  duration_ms: 1.606535
+  type: 'test'
+  ...
+# Subtest: missing swatch is rejected without a write
+ok 40 - missing swatch is rejected without a write
+  ---
+  duration_ms: 0.373153
+  type: 'test'
+  ...
+# Subtest: Companion presets reference actual action IDs and the connection label
+ok 41 - Companion presets reference actual action IDs and the connection label
+  ---
+  duration_ms: 63.089894
+  type: 'test'
+  ...
+# Subtest: global swatch selection satisfies the real beta.4 ownership contract
+ok 42 - global swatch selection satisfies the real beta.4 ownership contract
+  ---
+  duration_ms: 4.752353
+  type: 'test'
+  ...
+# Subtest: export requested result is accepted without claiming exported files are complete
+ok 43 - export requested result is accepted without claiming exported files are complete
+  ---
+  duration_ms: 0.686032
+  type: 'test'
+  ...
+# Subtest: disabled and ambiguous profiles produce no write
+ok 44 - disabled and ambiguous profiles produce no write
+  ---
+  duration_ms: 0.551673
+  type: 'test'
+  ...
+# Subtest: native Reset admission blocks only its own slider and releases before completion
+ok 45 - native Reset admission blocks only its own slider and releases before completion
+  ---
+  duration_ms: 24.01301
+  type: 'test'
+  ...
+# Subtest: adjacent queued encoder ticks coalesce and keep the resulting displayed units
+ok 46 - adjacent queued encoder ticks coalesce and keep the resulting displayed units
+  ---
+  duration_ms: 5.507405
+  type: 'test'
+  ...
+# Subtest: brush Reset uses returned native value rather than a guessed zero
+ok 47 - brush Reset uses returned native value rather than a guessed zero
+  ---
+  duration_ms: 1.197187
+  type: 'test'
+  ...
+# Subtest: regular Masking Reset consumes its exact correction result and actual value
+ok 48 - regular Masking Reset consumes its exact correction result and actual value
+  ---
+  duration_ms: 1.538171
+  type: 'test'
+  ...
+# (node:64) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Crop reuses recent confirmed feedback after checking current context, retaining post-write reads
+ok 49 - Crop reuses recent confirmed feedback after checking current context, retaining post-write reads
+  ---
+  duration_ms: 11.75278
+  type: 'test'
+  ...
+# Subtest: Crop refreshes an expired or unavailable cached SDK baseline
+ok 50 - Crop refreshes an expired or unavailable cached SDK baseline
+  ---
+  duration_ms: 2.545761
+  type: 'test'
+  ...
+# Subtest: Crop refreshes after an external Develop revision and uses the new SDK value
+ok 51 - Crop refreshes after an external Develop revision and uses the new SDK value
+  ---
+  duration_ms: 0.940418
+  type: 'test'
+  ...
+# Subtest: Crop rejects changed photo/context or leaving Develop before writing
+ok 52 - Crop rejects changed photo/context or leaving Develop before writing
+  ---
+  duration_ms: 3.20093
+  type: 'test'
+  ...
+# Subtest: Crop never turns unavailable feedback into a guessed adjustment
+ok 53 - Crop never turns unavailable feedback into a guessed adjustment
+  ---
+  duration_ms: 1.071648
+  type: 'test'
+  ...
+# Subtest: Crop rounds higher precision SDK baselines to the dedicated API precision
+ok 54 - Crop rounds higher precision SDK baselines to the dedicated API precision
+  ---
+  duration_ms: 1.851726
+  type: 'test'
+  ...
+# Subtest: Crop Reset remains a confirmation barrier and does not publish the requested value early
+ok 55 - Crop Reset remains a confirmation barrier and does not publish the requested value early
+  ---
+  duration_ms: 12.930501
+  type: 'test'
+  ...
+# (node:70) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: background polling is bounded, deduplicates observers and a blocked family does not stall others
+ok 56 - background polling is bounded, deduplicates observers and a blocked family does not stall others
+  ---
+  duration_ms: 104.859597
+  type: 'test'
+  ...
+# Subtest: Process Version follows delayed authoritative feedback without replaying the command
+ok 57 - Process Version follows delayed authoritative feedback without replaying the command
+  ---
+  duration_ms: 6.555668
+  type: 'test'
+  ...
+# Subtest: categorical follow-up has a finite budget when Lightroom does not change
+ok 58 - categorical follow-up has a finite budget when Lightroom does not change
+  ---
+  duration_ms: 8.753916
+  type: 'test'
+  ...
+# Subtest: a failed older background poll cannot erase newer authoritative feedback
+ok 59 - a failed older background poll cannot erase newer authoritative feedback
+  ---
+  duration_ms: 0.845807
+  type: 'test'
+  ...
+# Subtest: a failed older post-action follow-up cannot erase newer authoritative feedback
+ok 60 - a failed older post-action follow-up cannot erase newer authoritative feedback
+  ---
+  duration_ms: 13.702792
+  type: 'test'
+  ...
+# Subtest: Healing keeps the last SDK values visible during a same-owner pending edit without weakening admission
+ok 61 - Healing keeps the last SDK values visible during a same-owner pending edit without weakening admission
+  ---
+  duration_ms: 1.302357
+  type: 'test'
+  ...
+# Subtest: pending Healing feedback is cleared after photo changes
+ok 62 - pending Healing feedback is cleared after photo changes
+  ---
+  duration_ms: 0.515609
+  type: 'test'
+  ...
+# Subtest: pending Healing feedback is cleared after tool changes
+ok 63 - pending Healing feedback is cleared after tool changes
+  ---
+  duration_ms: 9.857406
+  type: 'test'
+  ...
+# Subtest: pending Healing feedback is cleared after mode changes
+ok 64 - pending Healing feedback is cleared after mode changes
+  ---
+  duration_ms: 0.588564
+  type: 'test'
+  ...
+# Subtest: pending Healing feedback is cleared after repair changes
+ok 65 - pending Healing feedback is cleared after repair changes
+  ---
+  duration_ms: 0.63486
+  type: 'test'
+  ...
+# Subtest: pending Healing feedback is cleared after expired snapshot changes
+ok 66 - pending Healing feedback is cleared after expired snapshot changes
+  ---
+  duration_ms: 0.306177
+  type: 'test'
+  ...
+# Subtest: pending Healing feedback is cleared after unavailable state changes
+ok 67 - pending Healing feedback is cleared after unavailable state changes
+  ---
+  duration_ms: 0.270229
+  type: 'test'
+  ...
+# Subtest: global Point Color publishes all 12 range boundaries and clears transient selections
+ok 68 - global Point Color publishes all 12 range boundaries and clears transient selections
+  ---
+  duration_ms: 6.932785
+  type: 'test'
+  ...
+# Subtest: masked Point Color publishes all 12 range boundaries and clears transient selections
+ok 69 - masked Point Color publishes all 12 range boundaries and clears transient selections
+  ---
+  duration_ms: 0.793366
+  type: 'test'
+  ...
+# Subtest: Color Grading successive turns dispatch while SDK feedback still reports the previous values
+ok 70 - Color Grading successive turns dispatch while SDK feedback still reports the previous values
+  ---
+  duration_ms: 16.558166
+  type: 'test'
+  ...
+# Subtest: Color Grading alternating Hue/Saturation retains both pending axes
+ok 71 - Color Grading alternating Hue/Saturation retains both pending axes
+  ---
+  duration_ms: 1.912746
+  type: 'test'
+  ...
+# Subtest: Every Color Grading region and scalar dispatches the existing Web Controller command
+ok 72 - Every Color Grading region and scalar dispatches the existing Web Controller command
+  ---
+  duration_ms: 3.796398
+  type: 'test'
+  ...
+# Subtest: Delayed grading feedback remains pending, then external Lightroom changes become the new baseline
+ok 73 - Delayed grading feedback remains pending, then external Lightroom changes become the new baseline
+  ---
+  duration_ms: 5.074582
+  type: 'test'
+  ...
+# Subtest: A queued grading edit cannot cross a photo change
+ok 74 - A queued grading edit cannot cross a photo change
+  ---
+  duration_ms: 6.987194
+  type: 'test'
+  ...
+# Subtest: A failed grading request cancels waiting turns without replaying any command
+ok 75 - A failed grading request cancels waiting turns without replaying any command
+  ---
+  duration_ms: 5.677744
+  type: 'test'
+  ...
+# Subtest: Color Grading region Reset separates previous targets from the following turn
+ok 76 - Color Grading region Reset separates previous targets from the following turn
+  ---
+  duration_ms: 2.49556
+  type: 'test'
+  ...
+# Subtest: Color Grading scalar Reset is confirmed before applying a following fine turn
+ok 77 - Color Grading scalar Reset is confirmed before applying a following fine turn
+  ---
+  duration_ms: 2.01303
+  type: 'test'
+  ...
+# Subtest: Fine batch preserves direction changes at the maximum instead of summing them away
+ok 78 - Fine batch preserves direction changes at the maximum instead of summing them away
+  ---
+  duration_ms: 4.646103
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for Exposure
+ok 79 - Fine button matches the Web Controller step for Exposure
+  ---
+  duration_ms: 1.900487
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for Contrast
+ok 80 - Fine button matches the Web Controller step for Contrast
+  ---
+  duration_ms: 1.110862
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for Temperature
+ok 81 - Fine button matches the Web Controller step for Temperature
+  ---
+  duration_ms: 0.720216
+  type: 'test'
+  ...
+# Subtest: Fine button matches the Web Controller step for ProfileAmount
+ok 82 - Fine button matches the Web Controller step for ProfileAmount
+  ---
+  duration_ms: 0.5275
+  type: 'test'
+  ...
+# Subtest: New Controller button and rotary presets explicitly use Fine steps
+ok 83 - New Controller button and rotary presets explicitly use Fine steps
+  ---
+  duration_ms: 27.902359
+  type: 'test'
+  ...
+# Subtest: Fine turns on either side of Reset use the actual serial-worker Reset baseline
+ok 84 - Fine turns on either side of Reset use the actual serial-worker Reset baseline
+  ---
+  duration_ms: 2.658518
+  type: 'test'
+  ...
+# Subtest: Fine Nudge rejects a completion from a different server epoch without replay
+ok 85 - Fine Nudge rejects a completion from a different server epoch without replay
+  ---
+  duration_ms: 0.788292
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua writes all wheel/scalar mappings immediately when Develop is ready
+ok 86 - Actual grading Lua writes all wheel/scalar mappings immediately when Develop is ready
+  ---
+  duration_ms: 168.82109
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua retains the 200ms wait when entering Develop
+ok 87 - Actual grading Lua retains the 200ms wait when entering Develop
+  ---
+  duration_ms: 83.891142
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua refuses a changed photo or failed module transition before writing
+ok 88 - Actual grading Lua refuses a changed photo or failed module transition before writing
+  ---
+  duration_ms: 48.487065
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua revalidates photo/module after SDK range and tracking calls
+ok 89 - Actual grading Lua revalidates photo/module after SDK range and tracking calls
+  ---
+  duration_ms: 127.299509
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua prevents the second wheel axis from crossing a photo change
+ok 90 - Actual grading Lua prevents the second wheel axis from crossing a photo change
+  ---
+  duration_ms: 18.84229
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua preserves SDK reset mappings and view selection
+ok 91 - Actual grading Lua preserves SDK reset mappings and view selection
+  ---
+  duration_ms: 93.199005
+  type: 'test'
+  ...
+# Subtest: Actual grading Lua preserves range validation and rejects invalid controls without writes
+ok 92 - Actual grading Lua preserves range validation and rejects invalid controls without writes
+  ---
+  duration_ms: 50.256782
+  type: 'test'
+  ...
+# Subtest: Healing Size and Feather use exact operation completions and retain serial ordering
+ok 93 - Healing Size and Feather use exact operation completions and retain serial ordering
+  ---
+  duration_ms: 19.212744
+  type: 'test'
+  ...
+# Subtest: SDK failure ends immediately, preserves its reason and cancels already-queued Healing edits
+ok 94 - SDK failure ends immediately, preserves its reason and cancels already-queued Healing edits
+  ---
+  duration_ms: 2.074619
+  type: 'test'
+  ...
+# Subtest: A displayed matching value cannot finish before its exact SDK operation completes
+ok 95 - A displayed matching value cannot finish before its exact SDK operation completes
+  ---
+  duration_ms: 67.104605
+  type: 'test'
+  ...
+# Subtest: Selected Opacity and Feather keep SDK units, native precision and exact repair-token transitions
+ok 96 - Selected Opacity and Feather keep SDK units, native precision and exact repair-token transitions
+  ---
+  duration_ms: 4.421506
+  type: 'test'
+  ...
+# Subtest: Changing the selected repair before a queued edit cancels it without sending
+ok 97 - Changing the selected repair before a queued edit cancels it without sending
+  ---
+  duration_ms: 1.238166
+  type: 'test'
+  ...
+# Subtest: Healing preferences follow Lightroom mode availability before any write
+ok 98 - Healing preferences follow Lightroom mode availability before any write
+  ---
+  duration_ms: 4.790899
+  type: 'test'
+  ...
+# Subtest: Generative AI and Detect Objects serialize exact confirmations and do not resend already-active On
+ok 99 - Generative AI and Detect Objects serialize exact confirmations and do not resend already-active On
+  ---
+  duration_ms: 2.196692
+  type: 'test'
+  ...
+# Subtest: An operation completion from another photo cannot confirm Healing
+ok 100 - An operation completion from another photo cannot confirm Healing
+  ---
+  duration_ms: 1.603678
+  type: 'test'
+  ...
+# Subtest: A matching value without the exact operation receipt is not accepted as success
+ok 101 - A matching value without the exact operation receipt is not accepted as success
+  ---
+  duration_ms: 2.063185
+  type: 'test'
+  ...
+# Subtest: Repair completion must name the resulting selected repair token
+ok 102 - Repair completion must name the resulting selected repair token
+  ---
+  duration_ms: 1.914048
+  type: 'test'
+  ...
+# Subtest: Rapid Close then Open waits for exact serial completions and reaches open state
+ok 103 - Rapid Close then Open waits for exact serial completions and reaches open state
+  ---
+  duration_ms: 6.268821
+  type: 'test'
+  ...
+# Subtest: Refresh selected repair reports requested rather than inventing native completion
+ok 104 - Refresh selected repair reports requested rather than inventing native completion
+  ---
+  duration_ms: 1.353421
+  type: 'test'
+  ...
+# Subtest: Healing Lua accepts fractional baseline serialization in Heal and Clone with one full snapshot
+ok 105 - Healing Lua accepts fractional baseline serialization in Heal and Clone with one full snapshot
+  ---
+  duration_ms: 283.194505
+  type: 'test'
+  ...
+# Subtest: Healing Lua retains precise stale-baseline rejection for real changes
+ok 106 - Healing Lua retains precise stale-baseline rejection for real changes
+  ---
+  duration_ms: 40.877062
+  type: 'test'
+  ...
+# Subtest: Healing Lua rechecks photo, tool, mode and value after yielding admission validation
+ok 107 - Healing Lua rechecks photo, tool, mode and value after yielding admission validation
+  ---
+  duration_ms: 172.27431
+  type: 'test'
+  ...
+# Subtest: Healing Lua reports unchanged SDK readback without retrying the write or rescanning inventories
+ok 108 - Healing Lua reports unchanged SDK readback without retrying the write or rescanning inventories
+  ---
+  duration_ms: 37.666805
+  type: 'test'
+  ...
+# Subtest: Healing Lua reports setter rejection once, with full public state
+ok 109 - Healing Lua reports setter rejection once, with full public state
+  ---
+  duration_ms: 58.202926
+  type: 'test'
+  ...
+# Subtest: Healing Lua confirms only after checking the full final snapshot and preserved preferences
+ok 110 - Healing Lua confirms only after checking the full final snapshot and preserved preferences
+  ---
+  duration_ms: 130.595985
+  type: 'test'
+  ...
+# Subtest: Healing Lua preserves Remove-mode Feather rejection and threshold availability guard
+ok 111 - Healing Lua preserves Remove-mode Feather rejection and threshold availability guard
+  ---
+  duration_ms: 36.60389
+  type: 'test'
+  ...
+# Subtest: Healing Lua Size, threshold, and mode writes preserve their public result contract
+ok 112 - Healing Lua Size, threshold, and mode writes preserve their public result contract
+  ---
+  duration_ms: 60.85219
+  type: 'test'
+  ...
+# Subtest: Healing Lua ordinary state queries still publish complete repair and Dust snapshots
+ok 113 - Healing Lua ordinary state queries still publish complete repair and Dust snapshots
+  ---
+  duration_ms: 27.918631
+  type: 'test'
+  ...
+# Subtest: Open Healing works while brush preferences are unavailable because another tool is selected
+ok 114 - Open Healing works while brush preferences are unavailable because another tool is selected
+  ---
+  duration_ms: 26.720433
+  type: 'test'
+  ...
+# Subtest: Close Healing works with normal or unavailable brush preferences
+ok 115 - Close Healing works with normal or unavailable brush preferences
+  ---
+  duration_ms: 2.632645
+  type: 'test'
+  ...
+# Subtest: Explicit Open and Close are idempotent and Close preserves another selected tool
+ok 116 - Explicit Open and Close are idempotent and Close preserves another selected tool
+  ---
+  duration_ms: 2.330107
+  type: 'test'
+  ...
+# Subtest: Open Healing preserves binding checks and does not retry a rejected photo change
+ok 117 - Open Healing preserves binding checks and does not retry a rejected photo change
+  ---
+  duration_ms: 1.213557
+  type: 'test'
+  ...
+# Subtest: Open/Close still refuses a pending Healing operation
+ok 118 - Open/Close still refuses a pending Healing operation
+  ---
+  duration_ms: 1.079235
+  type: 'test'
+  ...
+# Subtest: Opening exception does not enable brush edits while Healing is closed
+ok 119 - Opening exception does not enable brush edits while Healing is closed
+  ---
+  duration_ms: 2500.542449
+  type: 'test'
+  ...
+# Subtest: Remove, Heal and Clone retain supported SDK values with readable labels
+ok 120 - Remove, Heal and Clone retain supported SDK values with readable labels
+  ---
+  duration_ms: 3.522506
+  type: 'test'
+  ...
+# Subtest: Unified preset browser has one template set: Rotary, minus, supported Reset, plus; buttons last
+ok 121 - Unified preset browser has one template set: Rotary, minus, supported Reset, plus; buttons last
+  ---
+  duration_ms: 24.805538
+  type: 'test'
+  ...
+# Subtest: masked Point Color swatches and all scalars pass the actual beta.4 handlers and state
+ok 122 - masked Point Color swatches and all scalars pass the actual beta.4 handlers and state
+  ---
+  duration_ms: 38.973628
+  type: 'test'
+  ...
+# Subtest: masked Point Color range boundaries and translations pass actual beta.4 admission
+ok 123 - masked Point Color range boundaries and translations pass actual beta.4 admission
+  ---
+  duration_ms: 16.706269
+  type: 'test'
+  ...
+# Subtest: beta.4 rejects bare UUIDs for Masking corrections, curves and Refine Saturation
+ok 124 - beta.4 rejects bare UUIDs for Masking corrections, curves and Refine Saturation
+  ---
+  duration_ms: 4.368855
+  type: 'test'
+  ...
+# Subtest: every regular Masking control admits Set, fine ± and Reset through actual beta.4 validation
+ok 125 - every regular Masking control admits Set, fine ± and Reset through actual beta.4 validation
+  ---
+  duration_ms: 97.36979
+  type: 'test'
+  ...
+# Subtest: masked curve edits satisfy the actual curve_ admission rule
+ok 126 - masked curve edits satisfy the actual curve_ admission rule
+  ---
+  duration_ms: 23.696425
+  type: 'test'
+  ...
+# Subtest: masked Refine Saturation satisfies the actual refine_ admission rule
+ok 127 - masked Refine Saturation satisfies the actual refine_ admission rule
+  ---
+  duration_ms: 22.550323
+  type: 'test'
+  ...
+# Subtest: photo and mask changes still reject a pending gesture end
+ok 128 - photo and mask changes still reject a pending gesture end
+  ---
+  duration_ms: 12.18428
+  type: 'test'
+  ...
+# Subtest: an uncertain Masking end failure is not retried
+ok 129 - an uncertain Masking end failure is not retried
+  ---
+  duration_ms: 5.905569
+  type: 'test'
+  ...
+# Subtest: confirmed SDK value updates both ordinary slider and Controller variables without waiting for broad polling
+ok 130 - confirmed SDK value updates both ordinary slider and Controller variables without waiting for broad polling
+  ---
+  duration_ms: 23.200257
+  type: 'test'
+  ...
+# Subtest: background read already in flight cannot overwrite a newer exact completion
+ok 131 - background read already in flight cannot overwrite a newer exact completion
+  ---
+  duration_ms: 12.546976
+  type: 'test'
+  ...
+# Subtest: coalesced queued lower-ID feedback reads use their exact snapshot, never higher-ID stale global cache
+ok 132 - coalesced queued lower-ID feedback reads use their exact snapshot, never higher-ID stale global cache
+  ---
+  duration_ms: 4.272489
+  type: 'test'
+  ...
+# Subtest: legacy single-slider refresh also uses the exact owned snapshot and can mark a control unavailable
+ok 133 - legacy single-slider refresh also uses the exact owned snapshot and can mark a control unavailable
+  ---
+  duration_ms: 2.682344
+  type: 'test'
+  ...
+# Subtest: wrong snapshot ownership or a changed photo cannot publish feedback
+ok 134 - wrong snapshot ownership or a changed photo cannot publish feedback
+  ---
+  duration_ms: 0.299941
+  type: 'test'
+  ...
+# Subtest: stale context responses cannot clear a newer observed SDK completion
+ok 135 - stale context responses cannot clear a newer observed SDK completion
+  ---
+  duration_ms: 0.22492
+  type: 'test'
+  ...
+# Subtest: server epoch or connection reset invalidates all old values and read tickets
+ok 136 - server epoch or connection reset invalidates all old values and read tickets
+  ---
+  duration_ms: 1.728051
+  type: 'test'
+  ...
+# Subtest: old connection client cannot publish a completion into its replacement
+ok 137 - old connection client cannot publish a completion into its replacement
+  ---
+  duration_ms: 3.113866
+  type: 'test'
+  ...
+# Subtest: Develop actions contains only the requested five clearly labelled controls
+ok 138 - Develop actions contains only the requested five clearly labelled controls
+  ---
+  duration_ms: 49.617552
+  type: 'test'
+  ...
+# Subtest: Application follows the Web Controller groups and includes a Zoom rotary and secondary display controls
+ok 139 - Application follows the Web Controller groups and includes a Zoom rotary and secondary display controls
+  ---
+  duration_ms: 109.52115
+  type: 'test'
+  ...
+# Subtest: Mask creation, addition and subtraction have independent complete sections
+ok 140 - Mask creation, addition and subtraction have independent complete sections
+  ---
+  duration_ms: 28.987239
+  type: 'test'
+  ...
+# Subtest: Windows Healing Add/Subtract are omitted from new presets and choices while existing IDs remain callable
+ok 141 - Windows Healing Add/Subtract are omitted from new presets and choices while existing IDs remain callable
+  ---
+  duration_ms: 32.267215
+  type: 'test'
+  ...
+# Subtest: Red Eye and Pet Eye use the packaged route operation names
+ok 142 - Red Eye and Pet Eye use the packaged route operation names
+  ---
+  duration_ms: 16.011673
+  type: 'test'
+  ...
+# Subtest: Signed rotary feedback follows the value; minus and plus only highlight their own sign
+ok 143 - Signed rotary feedback follows the value; minus and plus only highlight their own sign
+  ---
+  duration_ms: 7.156697
+  type: 'test'
+  ...
+# Subtest: On/Off, Delete, Reset and ordinary button styles communicate distinct meanings
+ok 144 - On/Off, Delete, Reset and ordinary button styles communicate distinct meanings
+  ---
+  duration_ms: 11.193975
+  type: 'test'
+  ...
+# Subtest: Reset All remains explicitly armed and tells the preset user how to enable it
+ok 145 - Reset All remains explicitly armed and tells the preset user how to enable it
+  ---
+  duration_ms: 24.116721
+  type: 'test'
+  ...
+# Subtest: Every generated preset uses Text Size 25 plus Shrink to fit through the supported layered API
+ok 146 - Every generated preset uses Text Size 25 plus Shrink to fit through the supported layered API
+  ---
+  duration_ms: 13.033705
+  type: 'test'
+  ...
+# Subtest: Every generated minus/plus pair follows authoritative value sign and availability
+ok 147 - Every generated minus/plus pair follows authoritative value sign and availability
+  ---
+  duration_ms: 42.714213
+  type: 'test'
+  ...
+# Subtest: Tone Curve labels keep deliberate whole-word lines and live values
+ok 148 - Tone Curve labels keep deliberate whole-word lines and live values
+  ---
+  duration_ms: 29.825932
+  type: 'test'
+  ...
+# Subtest: Destructive setup is prominent and never pre-arms actions; automation warnings are specific
+ok 149 - Destructive setup is prominent and never pre-arms actions; automation warnings are specific
+  ---
+  duration_ms: 36.600322
+  type: 'test'
+  ...
+# Subtest: Focus Range disappears from choices and presets while remaining Lens Blur controls stay
+ok 150 - Focus Range disappears from choices and presets while remaining Lens Blur controls stay
+  ---
+  duration_ms: 13.551737
+  type: 'test'
+  ...
+# Subtest: Saved Focus Range shifts migrate to a clear safe failure and old numeric IDs cannot send commands
+ok 151 - Saved Focus Range shifts migrate to a clear safe failure and old numeric IDs cannot send commands
+  ---
+  duration_ms: 3.705725
+  type: 'test'
+  ...
+# Subtest: Automation warnings identify actual Windows paths and preserve destructive opt-in
+ok 152 - Automation warnings identify actual Windows paths and preserve destructive opt-in
+  ---
+  duration_ms: 29.896843
+  type: 'test'
+  ...
+# Subtest: Healing wheel workaround is restricted to new-brush Size and Feather
+ok 153 - Healing wheel workaround is restricted to new-brush Size and Feather
+  ---
+  duration_ms: 15.160407
+  type: 'test'
+  ...
+# Subtest: Favorite preset setup note appears in Presets and corresponding actions
+ok 154 - Favorite preset setup note appears in Presets and corresponding actions
+  ---
+  duration_ms: 11.700816
+  type: 'test'
+  ...
+# Subtest: Six read-only Point Color range overviews publish all four boundaries and watch live availability
+ok 155 - Six read-only Point Color range overviews publish all four boundaries and watch live availability
+  ---
+  duration_ms: 22.13006
+  type: 'test'
+  ...
+# Subtest: Custom whole-range actions subscribe to the selected global or mask context
+ok 156 - Custom whole-range actions subscribe to the selected global or mask context
+  ---
+  duration_ms: 21.297485
+  type: 'test'
+  ...
+# Subtest: Red Eye opens on the first new press after photo change despite stale family feedback
+ok 157 - Red Eye opens on the first new press after photo change despite stale family feedback
+  ---
+  duration_ms: 74.36973
+  type: 'test'
+  ...
+# Subtest: Red Eye intent queued on old photo is cancelled instead of applied to the new photo
+ok 158 - Red Eye intent queued on old photo is cancelled instead of applied to the new photo
+  ---
+  duration_ms: 1.893013
+  type: 'test'
+  ...
+# Subtest: people_open accepts delivered requested outcome without claiming completion
+ok 159 - people_open accepts delivered requested outcome without claiming completion
+  ---
+  duration_ms: 5.464374
+  type: 'test'
+  ...
+# Subtest: people_detect accepts delivered requested outcome without claiming completion
+ok 160 - people_detect accepts delivered requested outcome without claiming completion
+  ---
+  duration_ms: 1.12425
+  type: 'test'
+  ...
+# Subtest: red_eye_reset accepts delivered requested outcome without claiming completion
+ok 161 - red_eye_reset accepts delivered requested outcome without claiming completion
+  ---
+  duration_ms: 0.645118
+  type: 'test'
+  ...
+# Subtest: People Remove waits for required inventory refresh, then sends exactly once
+ok 162 - People Remove waits for required inventory refresh, then sends exactly once
+  ---
+  duration_ms: 1.725153
+  type: 'test'
+  ...
+# Subtest: Reflections waits for a fresh SDK snapshot before admitting an idle stale-state adjustment
+ok 163 - Reflections waits for a fresh SDK snapshot before admitting an idle stale-state adjustment
+  ---
+  duration_ms: 70.934108
+  type: 'test'
+  ...
+# Subtest: Reflections numeric failure uses the exact operation result immediately and never replays
+ok 164 - Reflections numeric failure uses the exact operation result immediately and never replays
+  ---
+  duration_ms: 2.55596
+  type: 'test'
+  ...
+# (node:160) ExperimentalWarning: The MockTimers API is an experimental feature and might change at any time
+# (Use `node --trace-warnings ...` to show where the warning was created)
+# Subtest: Matching Reflections value cannot confirm an operation while its callback is still pending
+ok 165 - Matching Reflections value cannot confirm an operation while its callback is still pending
+  ---
+  duration_ms: 67.356999
+  type: 'test'
+  ...
+# Subtest: Quality continues tracking beyond six seconds and accepts one late callback without duplicate write
+ok 166 - Quality continues tracking beyond six seconds and accepts one late callback without duplicate write
+  ---
+  duration_ms: 67.681745
+  type: 'test'
+  ...
+# Subtest: Long Reflections timeout preserves uncertainty and sends no retry
+ok 167 - Long Reflections timeout preserves uncertainty and sends no retry
+  ---
+  duration_ms: 67.314789
+  type: 'test'
+  ...
+# Subtest: Concurrent special-family readers share one read without hiding later fresh reads
+ok 168 - Concurrent special-family readers share one read without hiding later fresh reads
+  ---
+  duration_ms: 0.847024
+  type: 'test'
+  ...
+# Subtest: Retired saved Focus Range controls reject clearly without any network request
+ok 169 - Retired saved Focus Range controls reject clearly without any network request
+  ---
+  duration_ms: 0.72233
+  type: 'test'
+  ...
+# Subtest: Post-admission confirmation never joins or republishes a pre-action state read
+ok 170 - Post-admission confirmation never joins or republishes a pre-action state read
+  ---
+  duration_ms: 1.753567
+  type: 'test'
+  ...
+# Subtest: Operation ID reuse from a different bridge epoch never confirms Reflections
+ok 171 - Operation ID reuse from a different bridge epoch never confirms Reflections
+  ---
+  duration_ms: 1.956665
+  type: 'test'
+  ...
+1..171
+# tests 171
+# suites 0
+# pass 171
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2937.220425

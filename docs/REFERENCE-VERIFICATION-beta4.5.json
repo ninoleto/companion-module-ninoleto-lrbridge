@@ -1,0 +1,11 @@
+{
+  "referenceUnchanged": true,
+  "hashes": {
+    "app/controller.html": "ba1fb1dc2125aa683409f44863c6354c558226cd0860effdb505b6cbbe634ddc",
+    "server/bridge.js": "3775e85d157acd0abfa87598a5b50d873b2ad840d6387072c971def8c7cef226",
+    "server/commands.js": "a0cedfe7947a9fec8ffd3f026dfaeb1f6700fe9ad1d8ad694afbbc98574a3190",
+    "server/guarded-set.js": "b81b6f155b7bd9c17d42c19e91919f8474afa79036c75077b5bdec1b6836d616",
+    "server/reset-completion.js": "5bdf914dd842214e62d1fce616f3e2e80b37ea6d8f8deaf97593747942aef231"
+  },
+  "nativeLightroomTested": false
+}

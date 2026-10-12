@@ -1,0 +1,30 @@
+{
+  "module": "0.5.0-beta.4.6",
+  "based_on": "0.5.0-beta.4.5",
+  "verification": {
+    "node": "22.20.0",
+    "automated_tests_passed": 127,
+    "automated_tests_failed": 0,
+    "typescript_build": "passed",
+    "package_manifest": "valid",
+    "bundled_javascript_syntax": "valid",
+    "prerelease": true,
+    "plugin_archive_matches_tested_sources": true,
+    "reference_overlay_reproduction": "passed",
+    "preserved_beta45_inputs": "checksum verified",
+    "live_Companion_Lightroom_test": "not performed"
+  },
+  "files": [
+    {
+      "name": "ninoleto-lrbridge-0.5.0-beta.4.6.tgz",
+      "bytes": 40629,
+      "sha256": "754d73773d555bed79069e33473666b98a613de540e506f1e4eee6dcfe0ec31f"
+    },
+    {
+      "name": "LRBridge-Lightroom-Plugin-beta4.6-update.zip",
+      "bytes": 131402,
+      "sha256": "cb7911989f5311d191d99be42377a777565b5e673952b4e36c71229237e58241"
+    }
+  ],
+  "note": "This source archive records package/plugin hashes; it cannot contain its own hash."
+}

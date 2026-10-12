@@ -1,0 +1,42 @@
+{
+  "module": "0.5.0-beta.4.13",
+  "based_on": "0.5.0-beta.4.12",
+  "plugin": "beta4.10 unchanged",
+  "verification": {
+    "node": "22.20.0",
+    "typescript_build": "passed",
+    "tests_passed": 265,
+    "tests_failed": 0,
+    "new_healing_checkbox_tests": 9,
+    "new_bridge_admission_tests": 7,
+    "independent_review": "no blocker",
+    "package_manifest": "valid: Node22, API2.1.0, prerelease",
+    "bundled_javascript_syntax": "valid",
+    "changed_production_files": [
+      "src/controller-client.ts",
+      "src/main.ts"
+    ],
+    "checkbox_preflight": "newer owned SDK capture before both no-op and mutation",
+    "retry_scope": "only explicit useGenerativeAI/detectObjects brush admission with exact known typed HTTP409 rejection",
+    "maximum_admission_retry": 1,
+    "uncertain_or_admitted_operation_retry": false,
+    "original_context_and_mode_guard": "retained",
+    "plugin_overlay": "byte-identical to beta4.10",
+    "preset_definitions": "unchanged",
+    "point_color_actions_and_polling": "unchanged",
+    "auto_action_settling_ms": 2200,
+    "live_Lightroom_test": "not performed"
+  },
+  "files": [
+    {
+      "name": "ninoleto-lrbridge-0.5.0-beta.4.13.tgz",
+      "bytes": 48380,
+      "sha256": "a3fba1c4d734eed4c8b832f365ec986bd60a4b3ca370cda097808b7c42702c11"
+    },
+    {
+      "name": "LRBridge-Companion-beta4.13-Read-Me.txt",
+      "bytes": 1897,
+      "sha256": "d944e74e4f0012a11efb0904dfc7b41711a5a12b31f34a9b92a298ffd4ed77f8"
+    }
+  ]
+}

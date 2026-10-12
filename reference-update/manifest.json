@@ -1,0 +1,30 @@
+{
+  "baseline": "LRBridge-0.6.0-beta.4-guarded-set-20261010T165731Z-win-x64-portable.zip",
+  "module": "0.5.0-beta.4.13",
+  "files": [
+    {
+      "path": "lightroom/LRBridge.lrplugin/Info.lua",
+      "baseline_sha256": "ee08a82a795082b16cc091d27ec4915ec92c0987a1729d330d78678901abe653",
+      "updated_sha256": "618d09017c9b7b1d98948ba0df32cbd0fe1f952b8843e463fee3eff9c137a0a9",
+      "previous_update_sha256": [
+        "697e729ebcb02feda8d6c7e22466d3df087cd9906dcd2bea6d1b7a0f673a0349"
+      ]
+    },
+    {
+      "path": "lightroom/LRBridge.lrplugin/Remove.lua",
+      "baseline_sha256": "c5ae00eaa92f62c7a864168eb5995b80e1aafe94c7bcf780dbbdd5d25a36c640",
+      "updated_sha256": "bc144798838ff4b5e3cd2ba0d2ef98c0f5618d7bb8e87f0bc8ebe447fa05f0be"
+    },
+    {
+      "path": "lightroom/LRBridge.lrplugin/ColorGrading.lua",
+      "baseline_sha256": "d41faaca757d9d33ee01dcf5e946f9003204c54f139ffb96dbe698f9a2394bb3",
+      "updated_sha256": "8d12239d0cb6dab80a8c3349e8af8a769953cdd7025cd657b8facbde0b0b067f"
+    },
+    {
+      "path": "lightroom/LRBridge.lrplugin/Crop.lua",
+      "baseline_sha256": "250296c9a5e3354358f48deb214a313a931b9bda42ad16974aeca7c80476f3d7",
+      "updated_sha256": "c4d9588999cef91dab588fdbc193ef2cf0e616f71d63b63d89e21c0d73ce921f"
+    }
+  ],
+  "plugin_update": "beta4.10 (unchanged)"
+}

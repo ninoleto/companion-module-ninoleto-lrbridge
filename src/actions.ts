@@ -1,6 +1,8 @@
+import { numericById } from './controller-catalog.js'
+import { controllerActions, type ControllerActions } from './controller-companion.js'
 import type ModuleInstance from './main.js'
 
-export type ActionsSchema = {
+export type ActionsSchema = ControllerActions & {
 	adjust_slider: { options: { slider: string; amount: number } }
 	reset_slider: { options: { slider: string } }
 	lightroom_action: { options: { action: string } }
@@ -8,6 +10,7 @@ export type ActionsSchema = {
 
 export function UpdateActions(self: ModuleInstance): void {
 	self.setActionDefinitions({
+		...controllerActions(self),
 		adjust_slider: {
 			name: 'Adjust Lightroom slider',
 			options: [
@@ -16,7 +19,7 @@ export function UpdateActions(self: ModuleInstance): void {
 					type: 'dropdown',
 					label: 'Slider',
 					default: 'Exposure',
-					choices: self.getSliderChoices(),
+					choices: self.getSliderChoices().filter((c) => numericById.get(c.id)?.nativeAdjust !== false),
 				},
 				{
 					id: 'amount',

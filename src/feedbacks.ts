@@ -1,6 +1,7 @@
+import { controllerFeedbacks, type ControllerFeedbacks } from './controller-companion.js'
 import type ModuleInstance from './main.js'
 
-export type FeedbacksSchema = {
+export type FeedbacksSchema = ControllerFeedbacks & {
 	bridge_online: {
 		type: 'boolean'
 		options: Record<string, never>
@@ -25,6 +26,7 @@ export type FeedbacksSchema = {
 
 export function UpdateFeedbacks(self: ModuleInstance): void {
 	self.setFeedbackDefinitions({
+		...controllerFeedbacks(self),
 		bridge_online: {
 			name: 'LRBridge server is online',
 			type: 'boolean',
@@ -139,11 +141,13 @@ export function UpdateFeedbacks(self: ModuleInstance): void {
 			},
 		},
 		auto_action_cooldown_active: {
-			name: 'Auto Tone / Auto White Balance cooldown is active',
+			name: 'Auto Tone / Auto White Balance / Color / B&W cooldown is active',
+			description:
+				'Waiting for Lightroom to finish the previous adjustment. The cooldown restarts after each slider adjustment.',
 			type: 'boolean',
 			defaultStyle: {
-				bgcolor: 0xaa0000,
-				color: 0xffffff,
+				bgcolor: 0xffaa00,
+				color: 0x000000,
 			},
 			options: [],
 			callback: () => self.isAutoActionCooldownActive(),

@@ -1,0 +1,111 @@
+{
+  "feedbackCount": 1815,
+  "overrideCount": 2578,
+  "colorCases": [
+    {
+      "id": "wc_Contrast_minus",
+      "value": -10,
+      "color": "9a4f16"
+    },
+    {
+      "id": "wc_Contrast_plus",
+      "value": -10,
+      "color": "202428"
+    },
+    {
+      "id": "wc_Contrast_minus",
+      "value": 0,
+      "color": "202428"
+    },
+    {
+      "id": "wc_Contrast_plus",
+      "value": 0,
+      "color": "202428"
+    },
+    {
+      "id": "wc_Contrast_minus",
+      "value": 10,
+      "color": "202428"
+    },
+    {
+      "id": "wc_Contrast_plus",
+      "value": 10,
+      "color": "174f7a"
+    },
+    {
+      "id": "wc_Contrast_minus",
+      "value": "unavailable",
+      "color": "333333"
+    },
+    {
+      "id": "wc_Contrast_plus",
+      "value": "unavailable",
+      "color": "333333"
+    }
+  ],
+  "presets": 1028,
+  "renders": 2056,
+  "fitFailures": [],
+  "representative": [
+    "wc_Contrast_minus",
+    "wc_Contrast_plus",
+    "wc_Exposure_rotary",
+    "wc_ParametricShadowSplit_rotary",
+    "wc_curve_preset_Medium Contrast",
+    "wc_curve_preset_Strong Contrast",
+    "wc_curve_reset_green",
+    "wc_red_eye_open",
+    "wc_remove_brushSize_rotary",
+    "wc_remove_brushFeather_rotary",
+    "wc_point-color_HueRange_overview",
+    "wc_point-color_SatRange_overview",
+    "wc_point-color_LumRange_overview",
+    "wc_mask-point-color_HueRange_overview",
+    "wc_application_zoom_rotary",
+    "wc_mask-point-color_SatRange_overview",
+    "wc_GreenSaturation_reset",
+    "wc_mask-point-color_LumRange_overview",
+    "wc_BlueSaturation_reset",
+    "wc_VignetteMidpoint_reset",
+    "wc_mask_GrainFrequency_reset",
+    "wc_healing_fill_generative_remove",
+    "wc_RedSaturation_reset"
+  ],
+  "upstreamCommit": "6acd549dd5d97c16656b4fa705569b90acf5bfe1",
+  "canvasVersion": "1.0.1",
+  "fixtureConditions": {
+    "module": "development/LRBridge-Companion-0.5.0-beta.4.7/dist/presets.js",
+    "variableSubstitution": "For each numeric control, selected the longest string representation among its catalogue min, max, and zero. Used actual exported variableId(control.id) with LRBridge label. No live Lightroom connection.",
+    "resolution": [
+      72,
+      72
+    ],
+    "decorations": [
+      "topbar",
+      "none"
+    ],
+    "contactSheet": "23 representative actual presets rendered at 288px and shown at132px; labels include longest examples and requested Tone Curve/Point Color/Healing cases.",
+    "feedbackStates": [
+      -10,
+      0,
+      10,
+      "unavailable"
+    ],
+    "feedbackSource": "Actual controllerFeedbacks callbacks and official ConvertLayeredPresetFeedbacksToEntities, then official draw converter. Native Contrast value supplied as authoritative module getter."
+  },
+  "rendererEvidence": {
+    "tag": "v5.0.1",
+    "commit": "6acd549dd5d97c16656b4fa705569b90acf5bfe1",
+    "arimoPath": "research/companion-v5.0.1/assets/Fonts/Arimo-Regular.ttf",
+    "arimoSha256": "02219a6ff8456d985e2f17f60bd5555bcfb29b47c13e8bccc8362447287b74c6",
+    "fontRegistration": "Actual Arimo registered as Companion-sans; all12fallback and optional font files from upstream Fonts.ts registered with exact upstream family names.",
+    "pipeline": [
+      "ConvertLayerPresetElements",
+      "ConvertSomeButtonGraphicsElementForDrawing",
+      "GraphicsLayeredButtonRenderer.draw",
+      "Image/ImageBase.drawAlignedText",
+      "TextParser.computeTextLayout"
+    ],
+    "stubs": "Only Image.ts logger and Uint8Array-to-Buffer helper replaced for isolated execution. Variable parser substitutes fixture numeric values. No layout/render algorithms replaced."
+  }
+}

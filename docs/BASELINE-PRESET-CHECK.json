@@ -1,0 +1,11 @@
+{
+  "version": "0.5.0-beta.4.5",
+  "visiblePresets": 1034,
+  "sections": 50,
+  "numericControls": 198,
+  "registeredButtons": 290,
+  "selectableButtons": 288,
+  "legacyActionIdsRetained": true,
+  "placedButtonsAreNotRewritten": true,
+  "nativeCompanionAppearanceTested": false
+}

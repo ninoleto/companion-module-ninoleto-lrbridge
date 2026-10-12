@@ -1,0 +1,26 @@
+LRBridge Companion 0.5.0-beta.4.5 — next test
+
+INSTALL
+1. Export your Companion configuration first and keep the beta.4.4 package.
+2. Import ninoleto-lrbridge-0.5.0-beta.4.5.tgz in Companion and select it for the LRBridge connection.
+3. Keep your current LRBridge beta.4 guarded-set build (20261010T165731Z) and matching Lightroom plug-in. No LRBridge rebuild or plug-in replacement is needed.
+4. Keep the same host/ports. Add the new presets to a spare page. Existing buttons keep their saved colours, labels and feedback rules; importing a module does not restyle them.
+
+CHECK THESE FIRST
+- Exposure / Contrast: use the new Fine-step rotary and +/- presets. Contrast should move by 1, Exposure by 0.1. Watch the button value and try Reset, then another turn. Also change photos.
+- Healing: Size and brush Feather in Heal; Opacity and Feather with a compatible existing repair selected. Generative AI and Detect Objects in Remove. Try Close then Open quickly. Report any error shown in Companion; unsupported controls must not pretend to work.
+- Red Eye and Pet Eye: open each and close it.
+- Crop Angle: several turns, then change Angle directly in Lightroom and turn again. Some native delay remains.
+- Grouping and appearance: Mask Create / Add Component / Subtract Component; Application groups, Zoom rotary and secondary display; negative value orange, positive blue, zero base; Off dark red.
+- Reset All: on a test photo, edit the button's press action and enable Allow destructive action once. Until enabled, the action deliberately sends no request. Then test one press.
+
+WHAT CHANGED
+Confirmed standard-slider values now update the button display directly. Older reads are guarded against replacing them. Healing now follows the exact operation result, preserves SDK precision and reports failures instead of waiting on an unrelated value. Red Eye mapping and Pet Eye are corrected. Crop avoids a redundant read when it has recent confirmed feedback. Presets are regrouped and recoloured, and Zoom rotary is added. Healing Selected Add/Subtract are hidden from new presets/actions; existing saved actions remain compatible.
+
+LIMITS
+91 automated tests passed; no live Lightroom, hardware or Companion UI test was possible here. Healing may still have native SDK delays or failures. Preset Amount timing is unchanged. Automatic text fitting is preserved; set size 25 plus Shrink to fit manually in Companion if desired, because this module's simple preset API cannot express both together. Some command-only buttons have no active-state feedback.
+
+If needed, switch back to beta.4.4. Nothing was changed in LRBridge itself, committed, pushed, published or installed on your machines.
+
+FOR NEXT SESSION / DEVELOPERS
+Read docs/BETA4-CANDIDATE.md and the test report in the source ZIP. Source is based on public module commit 6fa1ddae6599352b24a11963ba6f8bc83b20fbb9 plus the preserved beta.4.4 candidate. All current work remains uncommitted on work/web-controller-beta4-parity. Use the included source, not a fresh clone of the unchanged public repository, to continue this candidate. Reference extraction and build instructions are in the candidate document.

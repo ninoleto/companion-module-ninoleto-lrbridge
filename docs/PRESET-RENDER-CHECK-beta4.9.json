@@ -1,0 +1,1491 @@
+{
+  "upstreamCommit": "6acd549dd5d97c16656b4fa705569b90acf5bfe1",
+  "companionVersion": "5.0.1",
+  "canvasVersion": "1.0.1",
+  "presets": 4,
+  "renders": 40,
+  "fitFailures": [],
+  "fontSize": 25,
+  "shrinkToFit": true,
+  "states": [
+    "ready",
+    3,
+    2,
+    1,
+    "restored"
+  ],
+  "feedbackVariableParsingVerified": true,
+  "cooldownOverridePriorityVerified": true,
+  "metrics": [
+    {
+      "id": "develop.action_setAutoTone",
+      "state": "ready",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "Auto Tone",
+      "captures": [
+        {
+          "text": "Auto Tone",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto Tone",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": "ready",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "Auto Tone",
+      "captures": [
+        {
+          "text": "Auto Tone",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto Tone",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": 3,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": 3,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": 2,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": 2,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": 1,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": 1,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": "restored",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "Auto Tone",
+      "captures": [
+        {
+          "text": "Auto Tone",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto Tone",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoTone",
+      "state": "restored",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "Auto Tone",
+      "captures": [
+        {
+          "text": "Auto Tone",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto Tone",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": "ready",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "Auto White Balance",
+      "captures": [
+        {
+          "text": "Auto White Balance",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto White",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "Balance",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": "ready",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "Auto White Balance",
+      "captures": [
+        {
+          "text": "Auto White Balance",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "White",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "Balance",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": 3,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": 3,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": 2,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": 2,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": 1,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": 1,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": "restored",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "Auto White Balance",
+      "captures": [
+        {
+          "text": "Auto White Balance",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto White",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "Balance",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "develop.action_setAutoWhiteBalance",
+      "state": "restored",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "Auto White Balance",
+      "captures": [
+        {
+          "text": "Auto White Balance",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Auto",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "White",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "Balance",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": "ready",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "Color",
+      "captures": [
+        {
+          "text": "Color",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Color",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": "ready",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "Color",
+      "captures": [
+        {
+          "text": "Color",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Color",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": 3,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": 3,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": 2,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": 2,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": 1,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": 1,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": "restored",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "Color",
+      "captures": [
+        {
+          "text": "Color",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Color",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_color",
+      "state": "restored",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "Color",
+      "captures": [
+        {
+          "text": "Color",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "Color",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": "ready",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "B&W",
+      "captures": [
+        {
+          "text": "B&W",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "B&W",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": "ready",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "B&W",
+      "captures": [
+        {
+          "text": "B&W",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "B&W",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": 3,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": 3,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n3s",
+      "captures": [
+        {
+          "text": "WAIT\n3s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "3s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": 2,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": 2,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n2s",
+      "captures": [
+        {
+          "text": "WAIT\n2s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "2s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": 1,
+      "decoration": "topbar",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": 1,
+      "decoration": "none",
+      "color": 16755200,
+      "text": "WAIT\n1s",
+      "captures": [
+        {
+          "text": "WAIT\n1s",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "WAIT",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              },
+              {
+                "text": "1s",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": "restored",
+      "decoration": "topbar",
+      "color": 2373194,
+      "text": "B&W",
+      "captures": [
+        {
+          "text": "B&W",
+          "bounds": [
+            2.16,
+            14.87,
+            67.68,
+            56.26
+          ],
+          "configuredPx": 12.083333333333334,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773196px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "B&W",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "photo.treatment_grayscale",
+      "state": "restored",
+      "decoration": "none",
+      "color": 2373194,
+      "text": "B&W",
+      "captures": [
+        {
+          "text": "B&W",
+          "bounds": [
+            2.16,
+            1.08,
+            67.68,
+            69.84
+          ],
+          "configuredPx": 15,
+          "allowShrink": true,
+          "layout": {
+            "fontDefinition": "15.463917525773194px/17.010309278350515px Companion-sans,Companion-symbols1,Companion-symbols2,Companion-symbols3,Companion-symbols4,Companion-symbols5,Companion-symbols6,Companion-gurmukhi,Companion-simplified-chinese,Companion-korean,Companion-emoji",
+            "lines": [
+              {
+                "text": "B&W",
+                "ascent": 13.99907398223877,
+                "descent": 3.277021646499634
+              }
+            ],
+            "measuredLineHeight": 17.276095628738403,
+            "measuredAscent": 13.99907398223877,
+            "fits": true
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "version": "0.5.0-beta.4.4",
+  "visiblePresets": 1040,
+  "sections": 46,
+  "duplicateLegacyTemplatesRemoved": 387,
+  "allPreviouslyExposedControllerPresetIdsStepsAndFeedbacksPreserved": true,
+  "allLegacySliderAndActionCapabilitiesCovered": true,
+  "legacyActionImplementationsUnchanged": true,
+  "placedButtonsAreNotRewritten": true,
+  "scope": "Template organization only; Healing availability and label fix verified separately."
+}
