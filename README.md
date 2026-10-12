@@ -1,6 +1,8 @@
 # companion-module-ninoleto-lrbridge
 
-> **0.6.0-rc.1 release candidate.** Preserves the accepted beta4.13 implementation and all existing action IDs, preset IDs and mappings. Pair with LRBridge 0.6.0-rc.1, which includes the tested beta4.10 Lightroom plug-in behavior. See [installation, verification and release status](docs/RELEASE_NOTES_0.6.0-rc.1.md).
+> **0.6.0-rc.1.** [Download the release](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/releases/tag/v0.6.0-rc.1) or browse the [complete matching source](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/tree/v0.6.0-rc.1). The version retains `rc.1`; this is a normal GitHub release marked Latest. It preserves the accepted beta4.13 implementation and all existing action IDs, preset IDs and mappings. Pair with LRBridge 0.6.0-rc.1, which includes the tested beta4.10 Lightroom plug-in behavior. See [installation, verification and known limitations](docs/RELEASE_NOTES_0.6.0-rc.1.md).
+
+Forks, issues and pull requests are welcome, including contributions using AI coding agents. Start with the [contributor handoff](CONTRIBUTING.md). The existing MIT license is unchanged; continued maintenance or response times are not promised. Use LRBridge only on a trusted LAN or private VPN: its command and internal feedback interfaces lack caller authentication. The owner accepts these documented limitations for publication.
 
 Native Bitfocus Companion connection module for **LRBridge**, a small bridge for controlling Adobe Lightroom Classic through HTTP.
 

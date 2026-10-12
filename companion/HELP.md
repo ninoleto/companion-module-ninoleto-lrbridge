@@ -129,3 +129,15 @@ Internal timing values are hidden so normal users do not need to tune them.
 Normal is recommended. Fast can read old Lightroom values on slower machines or heavy catalogs. Safe is slower but more reliable.
 
 Context/photo-change refresh uses LRBridge `/context`, then refreshes all feedback-supported sliders with one `/feedback/request-many` call. The previous chunked request-many implementation was removed because it could leave early sliders stale.
+
+## Network scope and source
+
+Use LRBridge only on a trusted LAN or trusted private VPN. Its listeners bind
+beyond loopback, and command/internal feedback interfaces do not authenticate
+callers. Do not expose ports 17890, 17891 or 17892 through public port forwarding
+or public tunnels. The owner accepts these known limitations for publication;
+they have not been fixed by this release.
+
+Browse the [complete 0.6.0-rc.1 source and contributor handoff](https://github.com/ninoleto/companion-module-ninoleto-lrbridge/tree/v0.6.0-rc.1).
+Forks and contributions are welcome under the existing MIT license; continued
+maintenance is not promised.
